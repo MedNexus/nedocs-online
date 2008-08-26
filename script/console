@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+ENV['RAILS_SITE'] = File.basename(File.expand_path(File.join(File.dirname(__FILE__), '..')))
+require File.dirname(__FILE__) + '/../../../config/boot'
+require 'commands/console'
