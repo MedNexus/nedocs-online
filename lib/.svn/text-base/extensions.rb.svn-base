@@ -1,0 +1,137 @@
+class ActionController::Base
+  prepend_before_filter :connect_to_studio_database
+  
+  # manually establish a connection to the proper database
+  def connect_to_studio_database
+    @studio = nil
+    
+    # request is first priority
+    if params[:studio_code]
+      if session[:studio_key] && session[:studio_key] != params[:studio_code]
+        reset_session
+      end
+      @studio = Master::Studio.find_by_code(params[:studio_code])
+    end
+    # try hostname if we don't already have a key in the session
+    unless session[:studio_key]
+      if !@studio && (request.host rescue '') =~ /^([-\w\d]+)/
+        @studio = Master::Studio.find_by_code($1)
+      end
+      if !@studio
+        @studio = Master::Studio.find_by_host request.host
+      end
+    end
+    
+    if @studio
+      if session[:studio_key] != @studio.key
+        session[:studio_key] = @studio.key
+        session[:studio_name] = @studio.name
+        session[:studio_code] = @studio.code
+        
+        session[:studio_logo_file] = @studio.logo_file if File.exists?(@studio.logo_file)
+      end
+    end
+    
+    if session[:studio_key]
+      @studio ||= Master::Studio.find_by_code(session[:studio_key])
+      ActiveRecord::Base.connect_to_studio session[:studio_key]
+      return true
+    end
+    
+    # if we don't issue an establish_connection by now, return an error
+    render :text => "Studio not found, please make sure the URL you entered is correct.", :status => 404 and return false
+  end
+end
+
+module ActiveRecord
+  class Base
+    class << self
+      
+      def connect_to_master
+        @@master_config ||= ActiveRecord::Base.configurations['master_' + RAILS_ENV]
+        self.establish_connection(
+          :adapter  => @@master_config['adapter'],
+          :database => @@master_config['database'],
+          :host     => @@master_config['host'],
+          :username => @@master_config['username'],
+          :password => @@master_config['password']
+        )
+      end
+      
+      def connect_to_studio(studio_key = nil)
+        studio_key ||= ENV['RAILS_STUDIO']
+        throw Exception.new('No studio selected') if !studio_key
+        
+        config = ActiveRecord::Base.configurations[RAILS_ENV]
+        self.establish_connection(
+          :adapter  => config['adapter'],
+          :database => config['database'] + '_' + studio_key,
+          :host     => config['host'],
+          :username => config['username'],
+          :password => config['password']
+        )
+        
+        ENV['RAILS_STUDIO'] = studio_key
+      end
+      
+      def connect_to_sessions
+        config = ActiveRecord::Base.configurations[RAILS_ENV]
+        self.establish_connection(
+          :adapter  => config['adapter'],
+          :database => config['database'],
+          :host     => config['host'],
+          :username => config['username'],
+          :password => config['password']
+        )
+      end
+    end
+  end
+  
+  class Migrator
+    class << self
+      alias_method :old_migrate, :migrate
+      def migrate(migrations_path, target_version = nil)
+        if ENV['RAILS_STUDIO'] == 'master'
+          Base.connect_to_master
+        elsif ENV['RAILS_STUDIO'] == 'sessions'
+          # do nothing
+        else
+          Base.connect_to_studio ENV['RAILS_STUDIO']
+        end
+        
+        old_migrate(migrations_path, target_version)
+      end
+    end
+  end
+end
+
+class CGI::Session::ActiveRecordStore::Session < ActiveRecord::Base
+  self.connection = self.connect_to_sessions
+end
+
+class MasterMigration < ActiveRecord::Migration
+  class << self
+    def migrate(direction)
+      return unless ENV['RAILS_STUDIO'] == 'master'
+      super(direction)
+    end
+  end
+end
+
+class SessionsMigration < ActiveRecord::Migration
+  class << self
+    def migrate(direction)
+      return unless ENV['RAILS_STUDIO'] == 'sessions'
+      super(direction)
+    end
+  end
+end
+
+class StudioMigration < ActiveRecord::Migration
+  class << self
+    def migrate(direction)
+      return if ENV['RAILS_STUDIO'] == 'master' || ENV['RAILS_STUDIO'] == 'sessions'
+      super(direction)
+    end
+  end
+end

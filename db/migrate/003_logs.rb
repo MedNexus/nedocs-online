@@ -1,4 +1,4 @@
-class Logs < ActiveRecord::Migration
+class Logs < MasterMigration
   def self.up
     create_table "logs" do |t|
       t.column "name",              :string

@@ -1,4 +1,4 @@
-class Cms < ActiveRecord::Migration
+class Cms < InstitutionMigration
   class CmsTemplate < ActiveRecord::Base ; acts_as_versioned ; end
   class CmsSnippet < ActiveRecord::Base ; acts_as_versioned ; end
   class CmsPage < ActiveRecord::Base ; acts_as_versioned ; end

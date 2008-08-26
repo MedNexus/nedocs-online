@@ -1,4 +1,4 @@
-class Members < ActiveRecord::Migration
+class Members < InstitutionMigration
   def self.up
     create_table "members" do |t|
       t.column "membername",        :string
