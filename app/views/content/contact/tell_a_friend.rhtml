@@ -1,0 +1,116 @@
+<%-
+  @page_title = 'Tell a Friend'
+  @sidebar = 'default'
+-%>
+
+<%-
+  @member = session[:saved_instance_variables].delete(:member) rescue Member.new(params[:member] || {})
+  @friend = session[:saved_instance_variables].delete(:friend) rescue Member.new(params[:friend] || {})
+  @message = session[:saved_instance_variables].delete(:message) rescue Message.new(params[:message] || {})
+-%>
+
+<h1>Tell a Friend</h1>
+
+<p>Tell others about our services! In addition to helping them out, you may also qualify for our
+referral program.</p>
+
+<%= flash_message %>
+
+<%- if flash[:notice] -%>
+  <!-- conversion tracking code goes here -->
+<%- else -%>
+
+<%- if flash[:error] -%>
+<%- else -%>
+<p>The program is simple:</p>
+
+<ol>
+  <li>You talk to a potential client and convince them to contact us.</li>
+  <li>They sign up for a new site/redesign + Service &amp; Support. Hooray!</li>
+  <li>When we receive the setup charge, we cut you a check for 10%.</li>
+</ol>
+
+<p>Our setup charge starts at $2,500, so 10% means an <strong>easy $250</strong> (or more) for maybe
+an hour's work, and you get paid as soon as we do. How does that sound?</p>
+
+<p>Alternately, if you cannot accept a referral bonus from us for whatever reason, you can instead
+request that we give the new client <strong>10% off their setup charge</strong>.</p>
+
+<p>Yes, there is fine print, but most of it is fairly obvious and nothing to worry about:</p>
+
+<ol class="fine-print">
+
+  <li>This referral program is open to everyone: employees, clients, friends &amp; family, and
+  anyone else who would like to send us business, even competitors.</li>
+
+  <li>That said, referral bonuses may be paid out differently to different people for tax reasons.
+  Employees will receive bonus checks with tax withheld. Clients have the option of receiving
+  service credits. Otherwise, the default payment method is a check for the entire bonus amount, and
+  I leave it to you to sort out the relevant tax issues on your own (GE, state, federal, etc.). I
+  recommend that you consult a tax professional.</li>
+
+  <li>10% is the maximum bonus amount that can be paid out for any sale, so if multiple people claim
+  the referral, or for some reason it cannot be determined who should get the credit for the
+  referral, the 10% payout will be split among all known referrers.</li>
+
+  <li>This program applies only to projects with a setup charge of $10,000 or less. For jobs that do
+  not meet this requirement, don't worry! You will still get paid, but we will work out a special
+  compensation plan.</li>
+
+  <li>We reserve the right not to act on a referral for any reason. To avoid this, it might help to
+  know that our ideal client is a small/medium business or non-profit who can do minor maintenance
+  on their own (copy changes, maybe adding news items), but also requires 2-4 hours/month of our
+  time. For various reasons, we prefer not to work with companies operating exclusively on the
+  internet.</li>
+
+  <li>The bonus payment is not automatic, in many situations if we aren't told explicitly, we don't
+  find out that a referral has occurred until months later. Thus, you must let us know when you have
+  referred someone to us.</li>
+
+  <li>And of course, the terms of this program are subject to change at any time, without
+  notice.</li>
+
+</ol>
+<%- end -%>
+
+<form action="/email_forms/tell_a_friend_send" method="post">
+  <div class="form-labels">
+    <p style="float: left; width: 270px;">
+      Your First Name<br/>
+      <%= text_field :member, :first_name, :size => 30, :class => 'textfield', :style => 'width: 240px' %><br/>
+      
+      Your Last Name<br/>
+      <%= text_field :member, :last_name, :size => 30, :class => 'textfield', :style => 'width: 240px' %><br/>
+      
+      Your Email Address<br/>
+      <%= text_field :member, :email_address, :size => 70, :class => 'textfield', :style => 'width: 240px' %>
+    </p>
+    
+    <p style="float: left; width: 250px;">
+      Friend's First Name<br/>
+      <%= text_field :friend, :first_name, :size => 30, :class => 'textfield', :style => 'width: 240px' %><br/>
+      
+      Friend's Last Name<br/>
+      <%= text_field :friend, :last_name, :size => 30, :class => 'textfield', :style => 'width: 240px' %><br/>
+      
+      Friend's Email Address<br/>
+      <%= text_field :friend, :email_address, :size => 70, :class => 'textfield', :style => 'width: 240px' %>
+    </p>
+    <br class="clear" />
+    
+    <p>
+      Email Subject<br/>
+      <%= text_field :message, :subject_additional, :size => 30, :class => 'textfield', :style => 'width: 560px;' %><br/>
+      
+      Your Personal Message<br/>
+      <%= text_area :message, :body, :rows => 20, :class => 'textfield', :style => 'height: 150px; width: 560px;' %><br/>
+      
+      <%= submission_id_field %>
+      <%= hidden_field_tag :pageref, params[:pageref] %>
+      <input class="formbutton" name="commit" type="submit" value="Send Message" />
+    </p>
+  </div>
+</form>
+
+<%- end -%>
+

@@ -1,0 +1,6 @@
+2008-08-25 21:39:49: (log.c.75) server started 
+2008-08-25 21:39:54: (mod_fastcgi.c.1705) connect failed: Connection refused on unix:/tmp/ruby-fastcgi.JUhsr.socket-1 
+2008-08-25 21:39:54: (mod_fastcgi.c.2817) backend died, we disable it for a 5 seconds and send the request to another backend instead: reconnects: 0 load: 1 
+2008-08-25 21:39:55: (mod_fastcgi.c.2396) unexpected end-of-file (perhaps the fastcgi process died): pid: 2498 socket: unix:/tmp/ruby-fastcgi.JUhsr.socket-1 
+2008-08-25 21:39:55: (mod_fastcgi.c.3134) child exited, pid: 2498 status: 1 
+2008-08-25 21:39:55: (mod_fastcgi.c.3181) response not received, request sent: 880 on socket: unix:/tmp/ruby-fastcgi.JUhsr.socket-1 for /dispatch.fcgi , closing connection 

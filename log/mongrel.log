@@ -1,0 +1,81 @@
+** Daemonized, any open files are closed.  Look at /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+/Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:505:in `real_connect': Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2) (Mysql::Error)
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:505:in `connect'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:183:in `initialize'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:88:in `new'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:88:in `mysql_connection'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:292:in `send'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:292:in `connection='
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:260:in `retrieve_connection'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:78:in `connection'
+	 ... 16 levels...
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/bin/mongrel_rails:16:in `load'
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/bin/mongrel_rails:16
+** Daemonized, any open files are closed.  Look at /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+/Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:505:in `real_connect': Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2) (Mysql::Error)
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:505:in `connect'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:183:in `initialize'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:88:in `new'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:88:in `mysql_connection'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:292:in `send'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:292:in `connection='
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:260:in `retrieve_connection'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:78:in `connection'
+	 ... 16 levels...
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/bin/mongrel_rails:16:in `load'
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/bin/mongrel_rails:16
+** Daemonized, any open files are closed.  Look at /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+/Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:505:in `real_connect': Access denied for user 'root'@'localhost' (using password: NO) (Mysql::Error)
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:505:in `connect'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:183:in `initialize'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:88:in `new'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/mysql_adapter.rb:88:in `mysql_connection'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:292:in `send'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:292:in `connection='
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:260:in `retrieve_connection'
+	from /Users/sdang/Projects/imagine-framework/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/connection_specification.rb:78:in `connection'
+	 ... 16 levels...
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/bin/mongrel_rails:16:in `load'
+	from /Applications/Locomotive2/Bundles/standardRailsMar2007.locobundle/i386/bin/mongrel_rails:16
+** Daemonized, any open files are closed.  Look at /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:3000
+** Writing PID file to /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:3000
+** Writing PID file to /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:3000
+** Writing PID file to /Users/sdang/Projects/imagine-framework/sites/nedocs-online/log/locomotive.pid
+** TERM signal received.

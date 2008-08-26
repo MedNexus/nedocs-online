@@ -1,0 +1,46 @@
+<h1>Edit User</h1>
+
+<%= flash_message %>
+
+<% form_tag(:action => 'process_edit', :id => @user) do %>
+<table>
+  <tr>
+    <td>First name:</td>
+    <td><%= text_field 'user', 'first_name' %></td>
+  </tr>
+  <tr>
+    <td>Last name:</td>
+    <td><%= text_field 'user', 'last_name' %></td>
+  </tr>
+  <tr>
+    <td>Email address:</td>
+    <td><%= text_field 'user', 'email_address' %></td>
+  </tr>
+  
+  <tr>
+    <td>Username:</td>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <td>New Password:</td>
+    <td><%= password_field 'user', 'password' %></td>
+  </tr>
+  <tr>
+    <td>Confirm:</td>
+    <td><%= password_field 'user', 'password_confirmation' %></td>
+  </tr>
+  <%- unless @user.username == session[:user_username] -%>
+    <tr>
+      <td>Permissions</td>
+      <td>
+        <%= check_box 'user', 'can_manage_uploads'     %> Manage Uploads<br/>
+        <%= check_box 'user', 'can_manage_users'       %> Manage Users
+      </td>
+    </tr>
+  <%- end -%>
+  <tr>
+    <td></td>
+    <td><%= submit_tag 'Update', :class =>'form_button' %></td>
+  </tr>
+</table>
+<% end %>

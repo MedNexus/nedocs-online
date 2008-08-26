@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 ENV['RAILS_SITE'] = File.basename(File.expand_path(File.join(File.dirname(__FILE__), '..')))
-puts `#{File.join(File.dirname(__FILE__), '..', '..', '..', 'script', 'makedb')}`
+puts `ruby #{File.join(File.dirname(__FILE__), '..', '..', '..', 'script', 'makedb')}`
