@@ -1,0 +1,28 @@
+<% if @nedoc %>
+  <div class='individualCard' id='graphCard' style='width: 300px'>
+  <div class='cardHeader'><span style='float: left'>NEDOCS Score</span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 250px;'>
+	
+	<table>
+		<tr>
+			<td width="100px">
+				<div style="height: 200px; width: 70px;">
+					<div style="height: 1px; width: 70px; border:2px solid black; position: relative; top: <%= 200 - @nedoc.nedocs_score %>px;"></div>
+					<img src=/images/NEDOCS_gradient.jpg>
+				</div>
+			</td>
+			<td width="200px">
+				<center>
+				<div style="color: #<%= @nedoc.color %>; font-size: 40px; margin-top: 20px"><%= @nedoc.nedocs_score %></div><br/><%= @nedoc.message %>
+				</center>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<div style="text-align: right; color: gray">
+		Last Updated: <%= time_ago_in_words(@nedoc.created_at) %>
+	</div>
+	</div>
+	</div>
+	</div>
+<% end %>

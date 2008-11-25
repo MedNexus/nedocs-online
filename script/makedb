@@ -1,4 +1,39 @@
 #!/usr/bin/env ruby
+require 'yaml'
 
-ENV['RAILS_SITE'] = File.basename(File.expand_path(File.join(File.dirname(__FILE__), '..')))
-puts `ruby #{File.join(File.dirname(__FILE__), '..', '..', '..', 'script', 'makedb')}`
+# user-configurables
+mysql = 'mysql'
+
+# command line-readables
+site = 'nedocs'
+hospital = ARGV.shift || ENV['RAILS_HOSPITAL'] || 'test'
+env = ARGV.shift || ENV['RAILS_ENV'] || 'development'
+
+# leave-aloneables
+RAILS_ROOT = File.join(File.dirname(__FILE__), '..', '..', '..')
+SITE_ROOT = File.join(RAILS_ROOT, 'sites', site)
+
+yml = YAML.load_file(File.join(SITE_ROOT, 'config', 'database.yml'))
+
+db = case hospital
+  when 'master' then yml['master_' + env]['database']
+  when 'sessions' then yml[env]['database']
+  else yml[env]['database'] + '_' + hospital
+end
+
+mysql += " -u #{yml[env]['username']}"
+mysql += " -p'#{yml[env]['password']}'" if yml[env]['password']
+
+# drop database if this is just dev
+if env == 'development'
+  print `#{mysql} -e 'drop database #{db}'`
+end
+print `#{mysql} -e 'create database #{db}'`
+
+# run migrations
+print `rake db:migrate RAILS_HOSPITAL=#{hospital}`
+
+# for dev, create sample data
+if env == 'development' && hospital != 'sessions'
+  print `RAILS_HOSPITAL=#{hospital} ruby #{SITE_ROOT}/script/console #{env} < #{SITE_ROOT}/db/create_sample_data_#{hospital}.rb`
+end

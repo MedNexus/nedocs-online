@@ -1,3 +1,5 @@
 ENV['RAILS_SITE'] = File.basename(File.dirname(__FILE__))
-cd "../.."
+#RAILS_ROOT = File.dirname(__FILE__)
+
+Dir.chdir "../.."
 load(File.join(File.dirname(__FILE__), '..', '..', 'Rakefile'))

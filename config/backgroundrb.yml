@@ -1,0 +1,4 @@
+--- 
+:host: localhost
+:rails_env: development
+:port: 2000

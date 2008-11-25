@@ -1,0 +1,30 @@
+<div class='individualCard' id='loginCard' style='width: 430px'>
+  <div class='cardHeader'><span style='float: left'>Login to Update NEDOCS Score</span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
+<%= flash_message %>
+
+<%= form_remote_tag :url => {:controller => 'User', :action => 'process_login'},
+                    :html => { :id => 'mainForm' }, 
+                    :loading => "Form.disable('mainForm')" -%>
+
+<table>
+    <tr>
+        <td>User Name:</td>
+        <td><%= text_field :login, :username, {:style => 'width: 200px'} %></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><%= password_field :login, :password, {:style => 'width: 200px' } %></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><%= submit_tag 'Login', :class => "button" %></td>
+    </tr>
+</table>
+
+<% end_form_tag -%>
+
+<%= javascript_tag "Form.enable('mainForm'); addTextFieldHint('item[name]', 'User Name');" %>
+
+</div>
+</div>

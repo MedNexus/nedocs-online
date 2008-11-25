@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require 'find'
+require 'fileutils'
+
+#BASEDIR = '/Users/anamba/Sites/bbrails/sites/backdrop'
+BASEDIR = '/www/backdrop/sites/backdrop'
+
+Find.find(BASEDIR + "/tmp/image-cache") do |f|
+  
+  if f =~ /(\w+)-(\d+)-(\d+)\./
+    filename, studio, image_id, image_version = f, $1, $2, $3
+    padded_id = sprintf("%08i", image_id)
+    dir1 = padded_id.slice(0,2)
+    dir2 = padded_id.slice(2,2)
+    dir3 = padded_id.slice(4,2)
+    target = File.join(BASEDIR, 'tmp', 'image-cache', studio, dir1, dir2, dir3, File.basename(filename))
+    unless f == target
+      puts "#{f} => #{target}"
+      FileUtils.mkdir_p(File.dirname(target))
+      FileUtils.mv(f, target)
+    end
+  end
+  
+end

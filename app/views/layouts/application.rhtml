@@ -1,160 +1,28 @@
-<%-
-  #@theme = 'independence_day'
-  
-  @onload ||= ''  
-  @javascripts ||= []
-  
-  if @sidebar == 'none'
-    sidebar = 'none'
-  else
-    sidebar = File.join([ 'sidebars', (@sidebar || File.join([ params[:section] || '' ])) ])
-    sidebar = 'sidebars/default' unless finder.template_exists?(sidebar, 'rhtml')
-  end
-  
-  sublayout = File.join('sublayouts', @sublayout || 'default')
-  
-  # main navigation
-  sections = [ 'home', 'services', 'about', 'support', 'contact' ]
-  subsections = {
-    'services' => [
-      { :section => 'overview', :url => '' },
-      { :section => 'portfolio' },
-      { :section => 'plans' },
-      { :section => 'premier' },
-      # { :section => 'government' },
-    ],
-    'about' => [
-      { :section => 'overview', :url => '' },
-      { :section => 'team', :translation => 'Our Team' },
-      { :section => 'careers' },
-      # { :section => 'partners' }
-    ]
-  }
-  translations = {
-    'home'      => 'Home',
-    'services'  => 'Our Work',
-    'about'     => 'Our Company',
-    'support'   => 'Get Support',
-    'contact'   => 'Contact Us'
-  }
-  urls = {
-    'home' => ''
-  }
--%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Strict//EN">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="verify-v1" content="EQVWWfkQ78nZ0QiYU/XQ/l+VjwfGJ08H0AX1ERVHYcg=" />
-    
-    <title><%= @page_title ? @page_title + ' | ' : '' %>Personalized Web Sites, Personalized Service. | Bigger Bird Creative, Inc. | Honolulu, Hawaii</title>
-    
+    <title><%= session[:studio_name] || '' %> <%= @page_title || '' %></title>
     <%= javascript_include_tag :defaults %>
     <% for js in [].concat(@javascripts || []).compact -%>
       <%= javascript_include_tag js %>
     <% end -%>
-    <% for js in [].concat(@dynamic_javascripts || []).compact.uniq -%>
-      <script type="text/javascript" src="<%= js %>"></script>
-    <% end -%>
-    <!--[if lt IE 7]>
-    <script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
-    <![endif]-->
-    
-    <% for stylesheet in [ 'default' ].concat(@stylesheets || []).compact -%>
+    <% for stylesheet in [ 'default', 'nedocs' ].concat(@stylesheets || []).compact -%>
       <%= stylesheet_link_tag stylesheet %>
     <% end -%>
-    <%= stylesheet_link_tag 'print', :media => 'print' %>
-    
-    <!--[if IE 7]>
-    <%= stylesheet_link_tag 'ie7' %>
-    <![endif]-->
-    <!--[if lt IE 7]>
-    <%= stylesheet_link_tag 'ie6' %>
-    <![endif]-->
-    
-    <%- if @theme -%>
-    <%= stylesheet_link_tag "themes/#{@theme}/default" %>
-    <!--[if IE 7]>
-    <%= stylesheet_link_tag "themes/#{@theme}/ie7" %>
-    <![endif]-->
-    <!--[if lt IE 7]>
-    <%= stylesheet_link_tag "themes/#{@theme}/ie6" %>
-    <![endif]-->
-    <%- end -%>
   </head>
   
-  <body<%= ' id="home"' unless params[:section] %>>
-    <div id="container">
-      <div id="header-wrapper">
-      <%= render (params[:section] ? '/shared/header' : '/shared/header_home') %>
-      </div>
-      
-      <div id="nav-wrapper">
-      <div id="nav"<%= ' class="home-nav"' unless params[:section] %>>
-        <ul>
-          <%- sections.each do |sec| -%>
-            <li id="nav-<%= sec %>"<%= ((sec == 'home' && controller.controller_name == 'content' && params[:section].blank? && params[:content_path].blank?) || (params[:content_path].first == sec) || (params[:section] == sec)) ? " class=\"current#{' has-subnav' if subsections[sec]}\"" : '' %>><a href="/<%= urls[sec] || sec %>"><%= translations[sec] || sec %></a>
-              <%- if subsections[sec] -%>
-              <div class="subnav">
-                <div class="subnav-padding-first"></div>
-                <div class="subnav-middle">
-                  <ul>
-                  <% subsections[sec].each_with_index do |sub, sub_i| -%>
-                  <%-
-                    style_classes = ''
-                    style_classes << 'last' if sub_i == subsections[sec].size - 1
-                    style_classes << ' current' if params[:content_path].join('/') == "#{sec}/#{sub[:section]}"
-                    style_classes << ' current' if params[:content_path].size == 1 && sub[:section] == 'overview'
-                  -%>
-                    <li id="subnav-<%= sec %>-<%= sub[:section] %>"<%= " class=\"#{style_classes}\"" unless style_classes.blank? %>><a href="/<%= sec %>/<%= sub[:url] || sub[:section] %>"><%= sub[:translation] || sub[:section].titleize %></a></li>
-                  <%- end -%>
-                  </ul>
-                  <br class="clear" />
+  <body<%= @onload ? " onload=\"#{@onload}\"" : '' %><%= @onkeypress ? " onkeypress=\"#{@onkeypress}\"" : '' %>>
+        <div id='institutionHeader' style='text-align: center; margin: 0 auto; width: 900px; padding-top: 30px; padding-bottom: 40px; background-color: #cccccc'>Harbor-UCLA<br/>Emergency Department - NEDOCS System</div>
+      	<div style="margin: 0 auto; width: 900px">
+				<table cellpadding="0" cellspacing="0" border="0" width="900" align="center" bgcolor="#cccccc">
+        <tr>
+            <td>
+                <div id='mainContent'>
+                    <%= yield %>
                 </div>
-                <div class="subnav-padding-last"></div>
-              </div>
-              <%- end -%>
-            </li>
-          <%- end -%>
-        </ul>
-        <p>Call (808) 377-4770 today!</p>
-        <br class="clear" />
-      </div>
-      </div>
-      
-      <div id="content">
-        <div id="main" class="column<%= subsections[params[:section]] ? ' has-subnav' : '' %>">
-          <%= render sublayout %>
-        </div>
-        
-        <div id="aside" class="column">
-          <%= render sidebar %>
-        </div>
-        
-        <br class="clear" />
-      </div>
-      
-      <div id="footer">
-        <div id="footer-nav">
-          <a href="/">Home</a> | <a href="/services">Our Work</a> | <a href="/about">Our Company</a> | <a href="/support">Get Support</a> | <a href="/contact">Contact Us</a>
-        </div>
-        <p>1052 Waimanu Street  Honolulu, Hawaii 96814  |  p. 808.377.4770  |  f. 808.356.0576</p>
-        <p>Copyright &copy; 2005-2008 Bigger Bird Creative, Inc. All rights reserved.</p>
-      </div>
-    </div>
-    
-    <%- if RAILS_ENV == 'production' -%>
-    <script type="text/javascript">
-        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-        var pageTracker = _gat._getTracker("UA-3263684-1");
-        pageTracker._initData();
-        pageTracker._trackPageview();
-    </script>
-    <%- end -%>
+            </td>
+        </tr>
+      </table>
+			</div>
   </body>
 </html>

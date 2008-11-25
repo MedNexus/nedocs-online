@@ -63,6 +63,7 @@ Autocompleter.Base.prototype = {
         if(!update.style.position || update.style.position=='absolute') {
           update.style.position = 'absolute';
           Position.clone(element, update, {
+            setWidth: false,
             setHeight: false, 
             offsetTop: element.offsetHeight
           });

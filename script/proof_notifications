@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+ENV['RAILS_ENV'] ||= 'development'
+require File.dirname(__FILE__) + '/../config/environment'
+
+@hospitals = Master::Hospital.find_all_by_active(1)
+
+@hospitals.each do |studio|
+  # connect to the studios db
+  ActiveRecord::Base.connect_to_hospital(studio.code)
+  
+  puts "\nConnected to #{studio.name}"
+  
+  # find all clients who have images but haven't been notified
+  clients = Client.find(:all, :conditions => ["images_count > 0 and proofing_notice = 0 and email_address is not NULL"])
+  
+  puts "Found #{clients.size.to_s} to notify about proofs"
+  
+  clients.each do |client|
+    
+    if client.email_address =~ /^[\w\d]+([\w\d\!\#\$\%\&\*\+\-\/\=\?\^\`\{\|\}\~\.]*[\w\d]+)*@([\w\d]+\.)+[\w]{2,}$/
+      puts "Sending notification to #{client.name}"
+      Email.deliver_view_your_proofs(client)
+    else
+      puts "Cannot send notification to #{client.name}, has missing/invalid email address"
+    end
+  end
+  
+end

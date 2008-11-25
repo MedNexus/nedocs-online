@@ -1,45 +1,45 @@
 class ActionController::Base
-  prepend_before_filter :connect_to_institution_database
+  prepend_before_filter :connect_to_hospital_database
   
   # manually establish a connection to the proper database
-  def connect_to_institution_database
-    @institution = nil
+  def connect_to_hospital_database
+    @hospital = nil
     
     # request is first priority
-    if params[:institution_code]
-      if session[:institution_key] && session[:institution_key] != params[:institution_code]
+    if params[:hospital_code]
+      if session[:hospital_key] && session[:hospital_key] != params[:hospital_code]
         reset_session
       end
-      @institution = Master::Institution.find_by_code(params[:institution_code])
+      @hospital = Master::Hospital.find_by_code(params[:hospital_code])
     end
     # try hostname if we don't already have a key in the session
-    unless session[:institution_key]
-      if !@institution && (request.host rescue '') =~ /^([-\w\d]+)/
-        @institution = Master::Institution.find_by_code($1)
+    unless session[:hospital_key]
+      if !@hospital && (request.host rescue '') =~ /^([-\w\d]+)/
+        @hospital = Master::Hospital.find_by_code($1)
       end
-      if !@institution
-        @institution = Master::Institution.find_by_host request.host
+      if !@hospital
+        @hospital = Master::Hospital.find_by_host request.host
       end
     end
     
-    if @institution
-      if session[:institution_key] != @institution.key
-        session[:institution_key] = @institution.key
-        session[:institution_name] = @institution.name
-        session[:institution_code] = @institution.code
+    if @hospital
+      if session[:hospital_key] != @hospital.key
+        session[:hospital_key] = @hospital.key
+        session[:studio_name] = @hospital.name
+        session[:hospital_code] = @hospital.code
         
-        session[:institution_logo_file] = @institution.logo_file if File.exists?(@institution.logo_file)
+        session[:studio_logo_file] = @hospital.logo_file if File.exists?(@hospital.logo_file)
       end
     end
     
-    if session[:institution_key]
-      @institution ||= Master::Institution.find_by_code(session[:institution_key])
-      ActiveRecord::Base.connect_to_institution session[:institution_key]
+    if session[:hospital_key]
+      @hospital ||= Master::Hospital.find_by_code(session[:hospital_key])
+      ActiveRecord::Base.connect_to_hospital session[:hospital_key]
       return true
     end
     
     # if we don't issue an establish_connection by now, return an error
-    render :text => "Institution not found, please make sure the URL you entered is correct.", :status => 404 and return false
+    render :text => "Studio not found, please make sure the URL you entered is correct.", :status => 404 and return false
   end
 end
 
@@ -58,20 +58,20 @@ module ActiveRecord
         )
       end
       
-      def connect_to_institution(institution_key = nil)
-        institution_key ||= ENV['RAILS_INSTITUTION']
-        throw Exception.new('No institution selected') if !institution_key
+      def connect_to_hospital(hospital_key = nil)
+        hospital_key ||= ENV['RAILS_HOSPITAL']
+        throw Exception.new('No hospital selected') if !hospital_key
         
         config = ActiveRecord::Base.configurations[RAILS_ENV]
         self.establish_connection(
           :adapter  => config['adapter'],
-          :database => config['database'] + '_' + institution_key,
+          :database => config['database'] + '_' + hospital_key,
           :host     => config['host'],
           :username => config['username'],
           :password => config['password']
         )
         
-        ENV['RAILS_INSTITUTION'] = institution_key
+        ENV['RAILS_HOSPITAL'] = hospital_key
       end
       
       def connect_to_sessions
@@ -91,12 +91,12 @@ module ActiveRecord
     class << self
       alias_method :old_migrate, :migrate
       def migrate(migrations_path, target_version = nil)
-        if ENV['RAILS_INSTITUTION'] == 'master'
+        if ENV['RAILS_HOSPITAL'] == 'master'
           Base.connect_to_master
-        elsif ENV['RAILS_INSTITUTION'] == 'sessions'
+        elsif ENV['RAILS_HOSPITAL'] == 'sessions'
           # do nothing
         else
-          Base.connect_to_institution ENV['RAILS_INSTITUTION']
+          Base.connect_to_hospital ENV['RAILS_HOSPITAL']
         end
         
         old_migrate(migrations_path, target_version)
@@ -112,7 +112,7 @@ end
 class MasterMigration < ActiveRecord::Migration
   class << self
     def migrate(direction)
-      return unless ENV['RAILS_INSTITUTION'] == 'master'
+      return unless ENV['RAILS_HOSPITAL'] == 'master'
       super(direction)
     end
   end
@@ -121,16 +121,16 @@ end
 class SessionsMigration < ActiveRecord::Migration
   class << self
     def migrate(direction)
-      return unless ENV['RAILS_INSTITUTION'] == 'sessions'
+      return unless ENV['RAILS_HOSPITAL'] == 'sessions'
       super(direction)
     end
   end
 end
 
-class InstitutionMigration < ActiveRecord::Migration
+class HospitalMigration < ActiveRecord::Migration
   class << self
     def migrate(direction)
-      return if ENV['RAILS_INSTITUTION'] == 'master' || ENV['RAILS_INSTITUTION'] == 'sessions'
+      return if ENV['RAILS_HOSPITAL'] == 'master' || ENV['RAILS_HOSPITAL'] == 'sessions'
       super(direction)
     end
   end

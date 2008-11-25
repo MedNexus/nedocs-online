@@ -1,0 +1,50 @@
+<div class='individualCard' id='formCard' style='width: 430px'>
+  <div class='cardHeader'><span style='float: left'>Update NEDOCS Score</span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
+<%= flash_message %>
+
+<%= form_remote_tag :url => {:controller => 'nedocs', :action => 'new'},
+                    :html => { :id => 'mainForm' }, 
+                    :loading => "Form.disable('mainForm')" -%>
+
+<table>
+    <tr>
+        <td>Total Patients in ED:</td>
+        <td><%= text_field :item, :total_patients_ed, {:style => 'width: 200px'} %></td>
+    </tr>
+    <tr>
+        <td>Total Respirators:</td>
+        <td><%= text_field :item, :total_respirators, {:style => 'width: 200px' } %></td>
+    </tr>
+    <tr>
+        <td>Longest Admit Time:</td>
+        <td><%= text_field :item, :longest_admit, {:style => 'width: 150px' } %> hours</td>
+    </tr>
+    <tr>
+        <td>Total Admits:</td>
+        <td><%= text_field :item, :total_admits, {:style => 'width: 200px' } %></td>
+    </tr>
+    <tr>
+        <td>Last Patient Waiting Time:</td>
+        <td><%= text_field :item, :last_patient_wait, {:style => 'width: 150px' }%> hours</td>
+    </tr>
+		<tr>
+				<td>Number of Hospital Beds:</td>
+				<td><%= text_field :item, :number_hospital_beds, {:style => 'width: 150px' }%></td>
+		</tr>
+		<tr>
+				<td>Number of ED Beds:</td>
+				<td><%= text_field :item, :number_ed_beds, {:style => 'width: 150px' } %></td>
+		</tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><%= submit_tag 'Update Score', :class => "button" %></td>
+    </tr>
+</table>
+
+<% end_form_tag -%>
+
+<%= javascript_tag "Form.enable('mainForm'); addTextFieldHint('item[name]', 'User Name');" %>
+<%= link_to "Logout", :controller => 'user', :action => 'logout'%>
+</div>
+</div>

@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+ENV['RAILS_ENV'] ||= 'development'
+args = ARGV.join(' ')
+
+require File.dirname(__FILE__) + '/../config/environment'
+
+puts "=========================================================="
+puts "===== SESSIONS"
+puts "=========================================================="
+puts
+print `rake db:migrate RAILS_ENV=#{ENV['RAILS_ENV']} RAILS_HOSPITAL=sessions #{args}`
+puts
+
+puts "=========================================================="
+puts "===== MASTER"
+puts "=========================================================="
+puts
+print `rake db:migrate RAILS_ENV=#{ENV['RAILS_ENV']} RAILS_HOSPITAL=master #{args}`
+puts
+
+Master::Hospital.find(:all).each do |studio|
+  puts "=========================================================="
+  puts "===== #{studio.name}"
+  puts "=========================================================="
+  puts
+  print `rake db:migrate RAILS_ENV=#{ENV['RAILS_ENV']} RAILS_HOSPITAL=#{studio.key} #{args}`
+  puts
+end

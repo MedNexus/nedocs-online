@@ -1,0 +1,2 @@
+module NedocsHelper
+end

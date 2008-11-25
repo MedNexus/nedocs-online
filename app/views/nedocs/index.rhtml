@@ -1,0 +1,18 @@
+<table>
+	<tr>
+		<td>
+			<div id='updateForm'>
+					<%= render :partial => 'form' if @user %>
+					<%= render :partial => 'user/login' if ! @user %>
+			</div>
+		</td>
+		<td width="77">
+			&nbsp;
+		</td>
+		<td>			
+			<div id='graph'>
+				<%= render :partial => 'graph' %>
+			</div>
+		</td>
+	</tr>
+</table>
