@@ -30,7 +30,7 @@
     </tr>
 		<tr>
 				<td>Number of Hospital Beds:</td>
-				<td><%= text_field :item, :number_hospital_beds, {:style => 'width: 150px' }%></td>
+				<td><%= text_field :item, :number_hospital_beds, {:style => 'width: 150px', :value => Setting.number_of_hospital_beds }%></td>
 		</tr>
 		<tr>
 				<td>Number of ED Beds:</td>

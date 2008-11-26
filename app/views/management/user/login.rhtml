@@ -10,7 +10,7 @@
 		</td>
 		<td>			
 			<div id='graph'>
-				<%= render :partial => 'nedocs/graph' %>
+				<%= render :partial => 'nedocs/graph' if Setting.public_display? %>
 			</div>
 		</td>
 	</tr>

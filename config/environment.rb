@@ -6,7 +6,7 @@ else
   #
   # general
   #
-  UserRedirectAfterLogin = {:controller => "nedocs"}
+  UserRedirectAfterLogin = {:controller => "/nedocs", :action => "index" }
   UserSessionTimeout = 60.minutes
   
   # completely override these framework-level files (generally models)

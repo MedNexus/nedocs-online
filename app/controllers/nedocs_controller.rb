@@ -1,5 +1,5 @@
 class NedocsController < ApplicationController
-  skip_before_filter :authenticate_user, :only => [ :graph_latest, :latest_nedocs_score ]
+  skip_before_filter :authenticate_user, :only => ['graph_latest']
   before_filter :latest_nedocs_score
   skip_after_filter :compress_output, :only => ['graph_latest']
   
