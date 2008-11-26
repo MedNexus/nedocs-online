@@ -1,13 +1,13 @@
 class NedocsController < ApplicationController
+  skip_before_filter :authenticate_user, :only => [ :graph_latest, :latest_nedocs_score ]
   before_filter :latest_nedocs_score
-  before_filter :login_required, :only => ['new']
+  skip_after_filter :compress_output, :only => ['graph_latest']
   
   def index
-    @user = authenticate_user
   end
   
   def latest_nedocs_score
-    @nedoc = Nedoc.find(:first, :order => "created_at DESC")
+    @nedoc = Nedoc.latest
   end
   
   def new
@@ -28,6 +28,14 @@ class NedocsController < ApplicationController
       page.replace_html 'graph', :partial => 'graph'
       page.visual_effect :highlight, 'graphCard', {:duration => '1' } if saved
     end
+  end
+  
+  def graph_latest
+    @nedoc = Nedoc.latest
+    send_file @nedoc.image,
+        :filename => "nedocs_graph.jpg",
+        :disposition => 'inline',
+        :type => "image/jpg"
   end
   
 end

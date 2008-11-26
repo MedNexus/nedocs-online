@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+ENV['RAILS_ENV'] ||= 'development'
+require File.dirname(__FILE__) + '/../config/environment'
+
+# Load Basic Gradient
+grad = File.join(SITE_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg')
+im = Magick::Image::read(grad)[0]
+
+new_image = Magick::Image.new(im.columns+20,im.rows) { self.background_color = 'transparent' }
+new_image.composite!(im,Magick::WestGravity, Magick::OverCompositeOp)
+
+result = new_image.composite(im, Magick::WestGravity, Magick::OverCompositeOp)
+result.background_color = "transparent"
+gc = Magick::Draw.new
+gc.stroke('black')
+gc.stroke_width('5')
+gc.line(0,0,im.columns+20,0)
+gc.draw(new_image)
+
+new_image.write("test.png")

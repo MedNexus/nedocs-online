@@ -5,6 +5,10 @@ class Nedoc < ActiveRecord::Base
   validates_presence_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait]
   # validate numeric for all fields
   
+  def self.latest
+    Nedoc.find(:first, :order => "created_at DESC")
+  end
+  
   def calc_score
     if self.total_respirators > 2 then
       self.total_respirators = 2
@@ -19,6 +23,32 @@ class Nedoc < ActiveRecord::Base
     return self.nedocs_score    
   end
   
+  def image_file
+    File.join(SITE_ROOT, 'public', 'images', self.nedocs_score.to_s + ".png")
+  end
+  
+  def image
+    self.create_image
+    return self.image_file
+  end
+  
+  def create_image
+    if File.exists?(self.image_file)
+      return true
+    else
+      im = Magick::Image::read(File.join(SITE_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg'))[0]
+      new_image = Magick::Image.new(im.columns+20,im.rows) { self.background_color = 'transparent' }
+      new_image.composite!(im,Magick::WestGravity, Magick::OverCompositeOp)
+      gc = Magick::Draw.new
+      gc.stroke('black')
+      gc.stroke_width('5')
+      gc.line(0,200-self.nedocs_score,im.columns+20,200-self.nedocs_score)
+      gc.draw(new_image)
+      new_image.write(self.image_file)
+      return true
+    end
+  end
+
   def color
 		if self.nedocs_score <= 20
 			return "33b14d"

@@ -3,9 +3,10 @@
   <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
 <%= flash_message %>
 
-<%= form_remote_tag :url => {:controller => 'User', :action => 'process_login'},
-                    :html => { :id => 'mainForm' }, 
-                    :loading => "Form.disable('mainForm')" -%>
+<%= form_tag :controller => 'management/user', :action => 'process_login'
+                   # :html => { :id => 'mainForm' }, 
+                   # :loading => "Form.disable('mainForm')" 
+-%>
 
 <table>
     <tr>
@@ -18,13 +19,13 @@
     </tr>
     <tr>
         <td>&nbsp;</td>
-        <td><%= submit_tag 'Login', :class => "button" %></td>
+        <td><%= hidden_field_tag 'redirect_on_success', '/' %><%= submit_tag 'Login', :class => "button" %></td>
     </tr>
 </table>
 
 <% end_form_tag -%>
 
-<%= javascript_tag "Form.enable('mainForm'); addTextFieldHint('item[name]', 'User Name');" %>
+<% # javascript_tag "Form.enable('mainForm'); addTextFieldHint('item[name]', 'User Name');" %>
 
 </div>
 </div>
