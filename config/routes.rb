@@ -3,8 +3,8 @@ ActionController::Routing::Routes.draw do |map|
   
   # client gateway
   map.connect '',                                     :controller => 'nedocs'
-  map.connect 'nedocs',                               :controller => 'nedocs'
-  map.connect 'user',                                 :controller => 'user'
+  map.connect 'nedocs/:action/:id',                               :controller => 'nedocs'
+  map.connect 'user/:action/:id',                                 :controller => 'user'
 
   # Rails default
   map.connect ':controller/:action/:id'

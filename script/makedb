@@ -5,13 +5,14 @@ require 'yaml'
 mysql = 'mysql'
 
 # command line-readables
-site = 'nedocs'
+site = 'nedocs-online'
 hospital = ARGV.shift || ENV['RAILS_HOSPITAL'] || 'test'
 env = ARGV.shift || ENV['RAILS_ENV'] || 'development'
 
 # leave-aloneables
 RAILS_ROOT = File.join(File.dirname(__FILE__), '..', '..', '..')
 SITE_ROOT = File.join(RAILS_ROOT, 'sites', site)
+print "SITE ROOT: #{SITE_ROOT}\n\n"
 
 yml = YAML.load_file(File.join(SITE_ROOT, 'config', 'database.yml'))
 
