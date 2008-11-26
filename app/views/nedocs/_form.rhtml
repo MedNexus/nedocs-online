@@ -1,40 +1,40 @@
-<div class='individualCard' id='formCard' style='width: 430px'>
-  <div class='cardHeader'><span style='float: left'>Update NEDOCS Score</span></div>
-  <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
+<div class='individualCard' id='formCard' style='width: 480px'>
+  <div class='cardHeader'><span style='float: left'>Update NEDOCS Score</span><span style='float: right'><%= link_to_function image_tag('btn_help.gif'), "new Effect.toggle('form_instructions', 'blind', { duration: 0.5 });" %></span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 450px;'>
 <%= flash_message %>
 
 <%= form_remote_tag :url => {:controller => 'nedocs', :action => 'new'},
-                    :html => { :id => 'mainForm' }, 
+                    :html => { :id => 'mainForm', :onsubmit => "teardownTextFieldHints();"},
                     :loading => "Form.disable('mainForm')" -%>
 
 <table>
     <tr>
         <td>Total Patients in ED:</td>
-        <td><%= text_field :item, :total_patients_ed, {:style => 'width: 200px'} %></td>
+        <td><%= text_field :item, :total_patients_ed, {:style => 'width: 270px'} %></td>
     </tr>
     <tr>
         <td>Total Respirators:</td>
-        <td><%= text_field :item, :total_respirators, {:style => 'width: 200px' } %></td>
+        <td><%= text_field :item, :total_respirators, {:style => 'width: 270px' } %></td>
     </tr>
     <tr>
         <td>Longest Admit Time:</td>
-        <td><%= text_field :item, :longest_admit, {:style => 'width: 150px' } %> hours</td>
+        <td><%= text_field :item, :longest_admit, {:style => 'width: 220px' } %> hours</td>
     </tr>
     <tr>
         <td>Total Admits:</td>
-        <td><%= text_field :item, :total_admits, {:style => 'width: 200px' } %></td>
+        <td><%= text_field :item, :total_admits, {:style => 'width: 270px' } %></td>
     </tr>
     <tr>
         <td>Last Patient Waiting Time:</td>
-        <td><%= text_field :item, :last_patient_wait, {:style => 'width: 150px' }%> hours</td>
+        <td><%= text_field :item, :last_patient_wait, {:style => 'width: 220px' }%> hours</td>
     </tr>
 		<tr>
 				<td>Number of Hospital Beds:</td>
-				<td><%= text_field :item, :number_hospital_beds, {:style => 'width: 150px', :value => Setting.number_of_hospital_beds }%></td>
+				<td><%= text_field :item, :number_hospital_beds, {:style => 'width: 220px', :value => Setting.number_of_hospital_beds }%></td>
 		</tr>
 		<tr>
 				<td>Number of ED Beds:</td>
-				<td><%= text_field :item, :number_ed_beds, {:style => 'width: 150px' } %></td>
+				<td><%= text_field :item, :number_ed_beds, {:style => 'width: 220px' } %></td>
 		</tr>
     <tr>
         <td>&nbsp;</td>
@@ -42,9 +42,20 @@
     </tr>
 </table>
 
+
 <% end_form_tag -%>
 
-<%= javascript_tag "Form.enable('mainForm'); addTextFieldHint('item[name]', 'User Name');" %>
+<script type="text/javascript">
+//<![CDATA[
+addTextFieldHint('item[total_patients_ed]', 'Count all patients on white board');
+addTextFieldHint('item[total_respirators]', 'Count all patients currently on ventilators in ED')
+addTextFieldHint('item[longest_admit]', 'Who has been in the ED the longest?')
+addTextFieldHint('item[total_admits]', 'Count all admitted patients in the ED')
+addTextFieldHint('item[last_patient_wait]', 'Current time  - Triage Time')
+addTextFieldHint('item[number_ed_beds]', '35 - blocked off beds')
+</script>
+
+<%= javascript_tag "Form.enable('mainForm');"  %>
 <%= link_to "Logout", :controller => 'management/user', :action => 'logout'%>
 </div>
 </div>
