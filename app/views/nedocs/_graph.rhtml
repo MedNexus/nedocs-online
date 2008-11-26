@@ -20,7 +20,7 @@
 	</table>
 	<br/>
 	<div style="text-align: right; color: gray">
-		Last Updated: <%= time_ago_in_words(@nedoc.created_at) %>
+		Last Updated: <%= time_ago_in_words(@nedoc.created_at) %> ago by <%= @nedoc.user.username %>
 	</div>
 	</div>
 	</div>

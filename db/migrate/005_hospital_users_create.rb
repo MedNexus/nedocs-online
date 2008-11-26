@@ -13,8 +13,6 @@ class HospitalUsersCreate < HospitalMigration
       t.column 'active',            :integer, :default => 1, :null => false
       t.column 'is_superuser',      :integer, :default => 0, :null => false
       
-      t.column 'default_dashboard', :string
-    
       t.column 'created_on',        :timestamp
       t.column 'updated_on',        :timestamp
       

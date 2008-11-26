@@ -25,10 +25,10 @@ class ActionController::Base
     if @hospital
       if session[:hospital_key] != @hospital.key
         session[:hospital_key] = @hospital.key
-        session[:studio_name] = @hospital.name
+        session[:hospital_name] = @hospital.name
         session[:hospital_code] = @hospital.code
         
-        session[:studio_logo_file] = @hospital.logo_file if File.exists?(@hospital.logo_file)
+        session[:hospital_logo_file] = @hospital.logo_file if File.exists?(@hospital.logo_file)
       end
     end
     
