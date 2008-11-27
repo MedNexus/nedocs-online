@@ -18,8 +18,8 @@ else
   
   SSL_REDIRECTS_ON = false
   
-  ErrorEmailSender = 'support@reflectconnect.com'
-  ErrorEmailRecipients = 'support@reflectconnect.com'
+  ErrorEmailSender = 'noreply@nedocsonline.org'
+  ErrorEmailRecipients = 'sabin+nedocs@sabindang.com'
   
   
 end
