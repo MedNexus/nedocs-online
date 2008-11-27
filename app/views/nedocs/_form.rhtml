@@ -47,6 +47,7 @@
 
 <script type="text/javascript">
 //<![CDATA[
+Form.enable('mainForm');
 addTextFieldHint('item[total_patients_ed]', 'Count all patients on white board');
 addTextFieldHint('item[total_respirators]', 'Count all patients currently on ventilators in ED')
 addTextFieldHint('item[longest_admit]', 'Who has been in the ED the longest?')
@@ -55,7 +56,7 @@ addTextFieldHint('item[last_patient_wait]', 'Current time  - Triage Time')
 addTextFieldHint('item[number_ed_beds]', '35 - blocked off beds')
 </script>
 
-<%= javascript_tag "Form.enable('mainForm');"  %>
+
 <%= link_to "Logout", :controller => 'management/user', :action => 'logout'%>
 </div>
 </div>

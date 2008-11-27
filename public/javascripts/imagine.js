@@ -567,7 +567,7 @@ addLoadEvent(setupTextFieldHints);
 function teardownTextFieldHints() {
     textFieldHints.each(function (a) {
         var el = document.getElementsByName(a.name)[0];
-        if (el.value == a.hint) {
+        if (el && el.value == a.hint) {
             el.value = '';
             el.style.color = el.origColor ? el.origColor : 'black';
             el.onfocus = null;

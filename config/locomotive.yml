@@ -1,5 +1,5 @@
 ---
-mode: production
+mode: development
 bundle: /Applications/Locomotive2/Bundles/rmagickRailsMar2007_i386.locobundle
 port: 3001
 identifier: nedocs-online

@@ -145,7 +145,9 @@ Control.Slider.prototype = {
       this.translateToPx(sliderValue);
     
     this.drawSpans();
-    if(!this.dragging || !this.event) this.updateFinished();
+    if(!this.dragging || !this.event) {
+        try { this.updateFinished(); } catch (e) {}
+    }
   },
   setValueBy: function(delta, handleIdx) {
     this.setValue(this.values[handleIdx || this.activeHandleIdx || 0] + delta, 
