@@ -23,10 +23,12 @@ class ApplicationController < ActionController::Base
   end
  
   def authenticate_user
+    
     # if user is not logged in, record the current request and redirect
     if (!session[:user_authenticated])
       if User.find(:all).size == 0
-        flash[:notice] = 'No users exist in the system. Please create one now.'
+        logger.warn('WARNING: No Users in System')
+        render 'management/user/no_users'
       else
         flash[:notice] = defined?(UnauthenticatedUserMessage) ? UnauthenticatedUserMessage : 'This is an admin-only function. To continue, please log in now.'
         save_user_request
