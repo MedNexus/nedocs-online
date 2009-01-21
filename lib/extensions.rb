@@ -39,7 +39,7 @@ class ActionController::Base
     end
     
     # if we don't issue an establish_connection by now, return an error
-    render :text => "Studio not found, please make sure the URL you entered is correct.", :status => 404 and return false
+    render :text => "Hospital not found, please make sure the URL you entered is correct.", :status => 404 and return false
   end
 end
 
