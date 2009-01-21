@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 4
   validates_uniqueness_of :username, :message => 'already in use'
   validates_confirmation_of :password
+  validates_uniqueness_of :first_name, :scope => [:last_name, :active]  
   
   def self.authenticate(login,pass)
     u=find(:first, :conditions=> ["username = ?", login])
@@ -16,7 +17,6 @@ class User < ActiveRecord::Base
     nil
   end
   
-  SaltLength = 16 # :nodoc:
   
   def password=(val) # :nodoc:
     @password = val
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   def name
     return self.first_name + " " + self.last_name
   end
-  
+    
   def is_superuser?
     return (self.is_superuser == 1)
   end
@@ -67,5 +67,6 @@ class User < ActiveRecord::Base
   def self.list
     User.find(:all, :conditions => [ "active = 1" ], :order => 'last_name, first_name, username')
   end
-    
+  
 end
+
