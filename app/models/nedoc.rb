@@ -32,6 +32,10 @@ class Nedoc < ActiveRecord::Base
     return self.image_file
   end
   
+  def notify_list(email_only=false)
+    users = User.find(:all, :conditions => ["active = 1 and notify = 1 and notify_threshold <= #{self.nedocs_score}"])
+  end
+  
   def create_image
     if File.exists?(self.image_file)
       return true

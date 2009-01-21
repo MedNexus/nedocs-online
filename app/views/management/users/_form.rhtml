@@ -1,0 +1,46 @@
+<% if @item.new_record?
+  @url = {:action => "new" }
+  @str = "ADD"
+  @save = "Add User"
+else
+  @url = {:action => "update", :id => @item.id }
+  @str = "EDIT"
+  @save = "Save User"
+end -%>
+
+<div class='individualCard' id='formCard' style='width: 330px'>
+  <div class='cardHeader'><span style='float: left'><%= @str%> USER</span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 300px;'>
+<%= flash_message %>
+
+<%= form_remote_tag :url => @url,
+                    :html => { :id => 'mainForm' }, 
+                    :loading => "Form.disable('mainForm')" -%>
+                    
+<table>
+    <tr>
+        <td>User Name:</td>
+        <td><%= text_field :item, :username, {:style => 'width: 200px'} %></td>
+    </tr>
+    <tr>
+        <td>First Name:</td>
+        <td><%= text_field :item, :first_name, {:style => 'width: 200px' } %></td>
+    </tr>
+    <tr>
+        <td>Last Name:</td>
+        <td><%= text_field :item, :last_name, {:style => 'width: 200px' } %></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><%= text_field :item, :first_name, {:style => 'width: 200px' } %></td>
+    </tr>
+</table>
+            
+            
+            <%= submit_tag @save, :class => "button" %>
+<% end_form_tag -%>
+
+<%= javascript_tag "Form.enable('mainForm');" %>
+
+</div>
+</div>

@@ -51,27 +51,6 @@ class ApplicationController < ActionController::Base
     @user
   end
    
-#  def authenticate_user
-#    # if user is not logged in, record the current request and redirect
-#    if (!session[:authenticated])
-#      flash[:notice] = defined?(UnauthenticatedUserMessage) ? UnauthenticatedUserMessage : 'This is an admin-only function. To continue, please log in now.'
-#      return false
-#    end
-#    
-#    @user = User.find(session[:user_id])
-#    session[:user_is_superuser] = (@user.is_superuser == 1)
-#    @user
-#  end
-  
-  def login_required
-    if authenticate_user
-      return true
-    end
-    
-    render :update do |page|
-      page.replace_html 'updateForm', :partial => 'user/login'
-    end
-  end
   
   
 end

@@ -3,10 +3,7 @@
   <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
 <%= flash_message %>
 
-<%= form_tag :controller => 'management/user', :action => 'process_login'
-                   # :html => { :id => 'mainForm' }, 
-                   # :loading => "Form.disable('mainForm')" 
--%>
+<%= form_tag :controller => 'management/user', :action => 'process_login' -%>
 
 <table>
     <tr>
@@ -24,8 +21,6 @@
 </table>
 
 <% end_form_tag -%>
-
-<% # javascript_tag "Form.enable('mainForm'); addTextFieldHint('item[name]', 'User Name');" %>
 
 </div>
 </div>

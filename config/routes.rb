@@ -3,11 +3,13 @@ ActionController::Routing::Routes.draw do |map|
   
   # client gateway
   map.connect '',                                     :controller => 'nedocs'
-  map.connect 'nedocs/:action/:id',                               :controller => 'nedocs'
-  map.connect 'login',                       :controller => 'management/user', :action => 'login'
-  map.connect 'logout',                      :controller => 'management/user', :action => 'logout'
+  map.connect 'nedocs/:action/:id',                   :controller => 'nedocs'
+  map.connect 'login',                                :controller => 'management/user', :action => 'login'
+  map.connect 'logout',                               :controller => 'management/user', :action => 'logout'
   
-  map.connect 'management/user/:action/:id',            :controller => 'management/user'
+  map.connect 'admin/user/:action/:id',           :controller => 'management/user'
+  map.connect 'admin/users/:action/:id',          :controller => 'management/users'
+  map.connect 'admin/:action/:id',                :controller => 'management/admin'
 
   # Rails default
   map.connect ':controller/:action/:id'
