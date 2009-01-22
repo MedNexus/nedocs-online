@@ -2,9 +2,9 @@
   <div class='cardHeader'><span style='float: left'>Admin Tools</span></div>
   <div id='divForm' class='cardContent' style='margin: auto; width: 450px;'>
 		<ul>
-			<li>Manage Users</li>
-			<li>Change Settings</li>
-			<li>
+			<li><%= link_to "Manage Users", :controller => "/management/users" %></li>
+			<li><%= link_to "Change Settings", :controller => "/management/settings" %></li>
+			<li><%= link_to "Back to Score Screen", :controller => "/nedocs" %>
 		</ul>
 	</div>
 </div>
