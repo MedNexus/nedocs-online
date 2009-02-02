@@ -14,7 +14,7 @@ class Nedoc < ActiveRecord::Base
       self.total_respirators = 2
     end
     
-    self.nedocs_score = -20+(self.total_patients_ed/self.number_ed_beds)*85.8+(self.total_admits/self.number_hospital_beds)*600+self.total_respirators*13.4+self.longest_admit*0.93+self.last_patient_wait*5.64
+    self.nedocs_score = -20+(self.total_patients_ed/self.number_ed_beds)*85.8+(self.total_admits/self.number_hospital_beds)*600+self.total_respirators*13.4+self.longest_admit*0.93+self.last_patient_wait*5.64 rescue 200
     if self.nedocs_score > 200 then
       self.nedocs_score = 200
     end
@@ -22,6 +22,7 @@ class Nedoc < ActiveRecord::Base
     # self.user_id = ENV['RAILS_USER_ID']
 
     if self.save
+      return self.nedocs_score if self.notify_list(true).size <= 0
       Email.deliver_score_update(self)
       return self.nedocs_score    
     else
