@@ -12,6 +12,8 @@ class NedocsController < ApplicationController
   
   def new
     @item = Nedoc.new(params[:item])
+    @item.user = @user
+    
     if @item.save then
       @item.calc_score
       @notice = "NEDOCS Score: #{@item.nedocs_score}"

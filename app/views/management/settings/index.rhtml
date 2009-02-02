@@ -1,0 +1,49 @@
+<div class='individualCard' id='formCard' style='width: 430px'>
+  <div class='cardHeader'><span style='float: left'>Settings</span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
+		<% form_tag(:action => "update_settings") do %>
+		<table>
+			<tr>
+				<td width="275">
+					Send Email As:
+				</td>
+				<td>
+					<%= text_field :setting, :hospital_email_address, {:style => 'width: 220px'} %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Display Score w/o Login:
+				</td>
+				<td>
+					<%= radio_button :setting, :public_display?, true %> Yes <%= radio_button :setting, :public_display?, false %> No
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Default # Hospital Beds:
+				</td>
+				<td>
+					<%= text_field :setting, :number_of_hospital_beds, {:style => 'width: 220px' } %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Default # ED Beds:
+				</td>
+				<td>
+					<%= text_field :setting, :number_of_ed_beds, {:style => 'width: 220px' } %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;
+				</td>
+				<td>
+					<%= submit_tag "Save Settings" %>
+				</td>
+			</tr>
+		</table>
+		<% end %>
+	</div>
+</div>

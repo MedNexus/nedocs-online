@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
   
   def set_default_session_values
-    session[:time_zone] ||= @settings[:time_zone]
+    session[:time_zone] ||= Setting.time_zone
     
     # set default expiration times
     session[:authenticated_expiration] = defined?(MemberSessionTimeout) ? MemberSessionTimeout : 60.minutes if RAILS_ENV == 'production'

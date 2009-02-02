@@ -18,9 +18,15 @@ class Nedoc < ActiveRecord::Base
     if self.nedocs_score > 200 then
       self.nedocs_score = 200
     end
-    self.user_id = ENV['RAILS_USER_ID']
-    self.save
-    return self.nedocs_score    
+
+    # self.user_id = ENV['RAILS_USER_ID']
+
+    if self.save
+      Email.deliver_score_update(self)
+      return self.nedocs_score    
+    else
+      return false
+    end
   end
   
   def image_file
@@ -33,7 +39,12 @@ class Nedoc < ActiveRecord::Base
   end
   
   def notify_list(email_only=false)
-    users = User.find(:all, :conditions => ["active = 1 and notify = 1 and notify_threshold <= #{self.nedocs_score}"])
+    users = User.find(:all, :conditions => ["active = 1 and send_notifications = 1 and notify_threshold <= #{self.nedocs_score}"])
+    if email_only
+      return users.collect { |x| x.notify_address }
+    else
+      return users
+    end
   end
   
   def create_image
@@ -104,6 +115,22 @@ class Nedoc < ActiveRecord::Base
   		return "Dangerously Overcrowded"
   	end
   end
+  
+  def self.graph_recent
+    require 'google_chart'
+    sparklines = GoogleChart::LineChart.new('400x200', nil, false)
+    nedocs = Nedoc.find(:all, :conditions => "created_at > #{(6.months.ago).to_i}")
+    
+    sparklines.data "NEDOCS Score", nedocs.collect{ |x| x.nedocs_score }
+    sparklines.show_legend = false
+    sparklines.axis :y, :range => [0, 200] 
+    # sparklines.axis :x, :range => [0, 21, 1]
+    sparklines.max_value 200
+    sparklines.fill(:chart, :solid, {:color => 'ededed'})
+    sparklines.fill(:background, :solid, {:color => 'ededed'})
+    return sparklines.to_url
+  end
+
   
   
   

@@ -1,1 +1,8 @@
-<%= @message %>
+The <%= Master::Hospital.find_by_key(ENV["RAILS_HOSPITAL"]).name %> NEDOCS score
+has exceeded your notification threshold.
+
+ The current score is:
+
+<%= @score %>
+
+Updated: <%= @time %> by <%= @user %>

@@ -13,7 +13,10 @@ test = User.create(
         :username => 'nedocs2',
         :password => 'bravo11',
         :first_name => 'nedocs2',
-        :last_name => 'nedocs2')
+        :last_name => 'nedocs2',
+        :send_notification => 1,
+        :notify_threshold => 180,
+        :notify_address => "sabin@ucla.edu")
 
 test = User.create(
         :username => 'nedocs3',

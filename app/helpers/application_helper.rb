@@ -24,5 +24,11 @@ module ApplicationHelper
     tag("img", options)
   end
   
+  def graph_historic(options = {})
+    options[:src] = Nedoc.graph_recent
+    options[:alt] = "Recent NEDOCS Scores"
+    options[:oncontextmenu] = "return false;"
+    tag("img", options)
+  end
   
 end

@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.connect 'admin/user/:action/:id',           :controller => 'management/user'
   map.connect 'admin/users/:action/:id',          :controller => 'management/users'
+  map.connect 'admin/settings/:action/:id',       :controller => 'management/settings'
   map.connect 'admin/:action/:id',                :controller => 'management/admin'
 
   # Rails default
