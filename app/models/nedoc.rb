@@ -23,7 +23,15 @@ class Nedoc < ActiveRecord::Base
 
     if self.save
       return self.nedocs_score if self.notify_list(true).size <= 0
-      Email.deliver_score_update(self)
+      
+      # attempt to deliver email scores
+      begin
+        Email.deliver_score_update(self)
+      rescue Exception => e
+        logger.debug "Exception: #{e}"
+        log_error(e)
+      end
+      
       return self.nedocs_score    
     else
       return false
@@ -42,7 +50,8 @@ class Nedoc < ActiveRecord::Base
   def notify_list(email_only=false)
     users = User.find(:all, :conditions => ["active = 1 and send_notifications = 1 and notify_threshold <= #{self.nedocs_score}"])
     if email_only
-      return users.collect { |x| x.notify_address }
+      # return only users with a non nil notify_address
+      return users.collect { |x| x.notify_address }.compact
     else
       return users
     end

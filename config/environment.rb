@@ -19,7 +19,7 @@ else
   SSL_REDIRECTS_ON = false
   
   ErrorEmailSender = 'noreply@nedocsonline.org'
-  ErrorEmailRecipients = 'sabin+nedocs@sabindang.com'
+  ErrorEmailRecipients = 'sabin+nedocs+error@sabindang.com'
   
   
 end
