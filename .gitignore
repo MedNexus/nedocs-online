@@ -3,5 +3,5 @@
 *.pid
 public/images/*.png
 public/system/maintenance*
-db/create_sample_data_harbor.rb
+db/create_sample_data_*
 
