@@ -5,7 +5,7 @@ class Nedoc < ActiveRecord::Base
   # validates_presence_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait]
   
   # validate numeric for all fields
-  validates_numericality_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait], :only_integer => true
+  validates_numericality_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait]
   
   def self.latest
     Nedoc.find(:first, :order => "created_at DESC")
@@ -52,8 +52,11 @@ class Nedoc < ActiveRecord::Base
 		h = Float(self.total_admits)
 		i = Float(self.last_patient_wait)
 
-
-    self.nedocs_score = (-20+(d/c)*85.8+ (h/g)*600+e*13.4+f*0.93 +i*5.64)
+    # make sure we don't divide by 0
+    c = 1 if c <= 0
+    g = 1 if g <= 0
+    
+    self.nedocs_score = (-20+(d/c)*85.8+ (h/g)*600+e*13.4+f*0.93 +i*5.64).round
     
     if self.nedocs_score > 200 then
       self.nedocs_score = 200

@@ -48,8 +48,7 @@ class NedocsController < ApplicationController
         return
       end
     
-      if @item.save then
-        @item.calc_score
+      if @item.calc_score_and_save then
         @notice = "NEDOCS Score: #{@item.nedocs_score}"
         
         # blank out nedocs score object
