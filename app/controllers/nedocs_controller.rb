@@ -61,6 +61,8 @@ class NedocsController < ApplicationController
       end
     end
     
+    latest_nedocs_score
+    
     render :update do |page|
       page.replace_html 'updateForm', :partial => 'form'
       page.replace_html 'graph', :partial => 'graph'
