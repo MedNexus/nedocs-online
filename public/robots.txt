@@ -1,1 +1,5 @@
-# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
+# This site requires login, so all robots should go away
+# If you want info on this application visit http://www.nedocsonline.org
+
+User-agent: *
+Disallow: /
