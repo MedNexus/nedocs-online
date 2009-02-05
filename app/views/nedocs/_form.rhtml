@@ -30,15 +30,17 @@
     </tr>
 		<tr>
 				<td>Number of Hospital Beds:</td>
-				<td><%= text_field :item, :number_hospital_beds, {:style => 'width: 220px', :value => Setting.number_of_hospital_beds }%></td>
+				<td><%= text_field :item, :number_hospital_beds, {:style => 'width: 220px' }%></td>
 		</tr>
 		<tr>
 				<td>Number of ED Beds:</td>
-				<td><%= text_field :item, :number_ed_beds, {:style => 'width: 220px', :value => Setting.number_of_ed_beds } %></td>
+				<td><%= text_field :item, :number_ed_beds, {:style => 'width: 220px' } %></td>
 		</tr>
     <tr>
         <td>&nbsp;</td>
-        <td><%= submit_tag 'Update Score', :class => "button" %></td>
+        <td>
+						<%= submit_tag 'Update Score', :class => "button" %>
+				</td>
     </tr>
 </table>
 

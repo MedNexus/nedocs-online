@@ -1,0 +1,57 @@
+<div class='individualCard' id='formCard' style='width: 480px'>
+  <div class='cardHeader'><span style='float: left'>Confirmation Required!</span><span style='float: right'><%= link_to_function image_tag('btn_help.gif'), "new Effect.toggle('form_instructions', 'blind', { duration: 0.5 });" %></span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 450px;'>
+
+<span class="error">To proceed, confirm you have entered the correct values and click the update score button.
+If you have made a mistake please click the cancel link to start over.</span>
+<br/><br/>
+
+<%= form_remote_tag :url => {:controller => 'nedocs', :action => 'new'},
+                    :html => { :id => 'mainForm'},
+                    :loading => "Form.disable('mainForm')" -%>
+
+
+<table>
+		<tr>
+			<td colspan="2">
+					<%= submit_tag "Update Score to #{@item.nedocs_score}", :class => "button" %> <%= link_to "Cancel", :action => "index" %>
+					<br/><br/><%= hidden_field :confirm, :set, :value => true %>
+			</td>
+		</tr>
+    <tr>
+        <td width="180">Total Patients in ED:</td>
+        <td><%= @item.total_patients_ed -%><%= hidden_field :item, :total_patients_ed %></td>
+    </tr>
+    <tr>
+        <td>Total Ventilators:</td>
+        <td><%= @item.total_respirators -%><%= hidden_field :item, :total_respirators %></td>
+    </tr>
+    <tr>
+        <td>Longest Admit Time:</td>
+        <td><%= @item.longest_admit -%><%= hidden_field :item, :longest_admit %> hours</td>
+    </tr>
+    <tr>
+        <td>Total Admits:</td>
+        <td><%= @item.total_admits -%><%= hidden_field :item, :total_admits %></td>
+    </tr>
+    <tr>
+        <td>Last Patient Waiting Time:</td>
+        <td><%= @item.last_patient_wait -%><%= hidden_field :item, :last_patient_wait %> hours</td>
+    </tr>
+		<tr>
+				<td>Number of Hospital Beds:</td>
+				<td><%= @item.number_hospital_beds -%><%= hidden_field :item, :number_hospital_beds %></td>
+		</tr>
+		<tr>
+				<td>Number of ED Beds:</td>
+				<td><%= @item.number_ed_beds -%><%= hidden_field :item, :number_ed_beds %></td>
+		</tr>
+</table>
+<br/><br/>
+<%= flash_message %>
+
+<% end_form_tag -%>
+
+
+</div>
+</div>

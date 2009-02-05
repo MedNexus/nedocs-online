@@ -58,6 +58,19 @@ module ActiveRecord
         )
       end
       
+      def connect_to_test
+        config = ActiveRecord::Base.configurations['test']
+        self.establish_connection(
+          :adapter  => config['adapter'],
+          :database => config['database'],
+          :host     => config['host'],
+          :username => config['username'],
+          :password => config['password']
+        )
+        ENV['RAILS_HOSPITAL'] = "test"
+      end
+      
+      
       def connect_to_hospital(hospital_key = nil)
         hospital_key ||= ENV['RAILS_HOSPITAL']
         throw Exception.new('No hospital selected') if !hospital_key
@@ -94,6 +107,8 @@ module ActiveRecord
         if ENV['RAILS_HOSPITAL'] == 'master'
           Base.connect_to_master
         elsif ENV['RAILS_HOSPITAL'] == 'sessions'
+          # do nothing
+        elsif ENV['RAILS_HOSPITAL'] == 'test'
           # do nothing
         else
           Base.connect_to_hospital ENV['RAILS_HOSPITAL']

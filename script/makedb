@@ -6,7 +6,7 @@ mysql = 'mysql'
 
 # command line-readables
 site = 'nedocs-online'
-hospital = ARGV.shift || ENV['RAILS_HOSPITAL'] || 'test'
+hospital = ARGV.shift || ENV['RAILS_HOSPITAL']
 env = ARGV.shift || ENV['RAILS_ENV'] || 'development'
 
 # leave-aloneables
@@ -16,11 +16,16 @@ print "SITE ROOT: #{SITE_ROOT}\n\n"
 
 yml = YAML.load_file(File.join(SITE_ROOT, 'config', 'database.yml'))
 
+print "Hospital: #{hospital}\n\n"
+
 db = case hospital
   when 'master' then yml['master_' + env]['database']
   when 'sessions' then yml[env]['database']
+  when 'test' then yml['test']['database']
   else yml[env]['database'] + '_' + hospital
 end
+
+print "Database: #{db}\n\n"
 
 mysql += " -u #{yml[env]['username']}"
 mysql += " -p'#{yml[env]['password']}'" if yml[env]['password']
@@ -31,8 +36,14 @@ if env == 'development'
 end
 print `#{mysql} -e 'create database #{db}'`
 
-# run migrations
-print `rake db:migrate RAILS_HOSPITAL=#{hospital}`
+# if we want to make the test database
+if hospital == "test"
+  RAILS_HOSPITAL="test"
+  print `rake db:test:prepare`
+else
+  # run migrations
+  print `rake db:migrate RAILS_HOSPITAL=#{hospital}`
+end
 
 # for dev, create sample data
 if env == 'development' && hospital != 'sessions'

@@ -4,6 +4,11 @@ class NedocsController < ApplicationController
   skip_after_filter :compress_output, :only => ['graph_latest']
   
   def index
+    @item = Nedoc.new()
+    # set defaults
+    @item.number_hospital_beds = Setting.number_of_hospital_beds
+    @item.number_ed_beds = Setting.number_of_ed_beds
+    
   end
   
   def latest_nedocs_score
@@ -16,17 +21,45 @@ class NedocsController < ApplicationController
   def new
     @item = Nedoc.new(params[:item])
     @item.user = @user
+    @error = @item.errors.full_messages.uniq.join('<br/>') unless @item.valid?
     
-    if @item.save then
+    # need to add confirmation
+    begin
       @item.calc_score
-      @notice = "NEDOCS Score: #{@item.nedocs_score}"
-      saved = true
-    else
-      @error = @item.errors.full_messages.uniq.join('<br/>')
-      saved = false
+    rescue
+      @error +=  "<br/>There was an error calculating the score, please try again<br/>"
     end
     
-    latest_nedocs_score
+    # unless we already have an error, continue
+    unless @error
+      
+      if @item.notify_list.size > 0 and !params[:confirm]
+        # we have to warn the user we're gonna email
+        @notice = "The following people " +
+                  "will be notified of this score update:<br/><ul><li>" + @item.notify_list.collect{ |x| x.name }.join("</li><li>")
+        @notice += "</li></ul>"
+        
+        # display with confirmation option
+        render :update do |page|
+          page.replace_html 'updateForm', :partial => 'confirm_form'
+          page.visual_effect :highlight, 'formCard', {:duration => '.5' }
+        end
+      
+        return
+      end
+    
+      if @item.save then
+        @item.calc_score
+        @notice = "NEDOCS Score: #{@item.nedocs_score}"
+        
+        # blank out nedocs score object
+        @item = Nedoc.new
+        saved = true
+      else
+        @error = @item.errors.full_messages.uniq.join('<br/>')
+        saved = false
+      end
+    end
     
     render :update do |page|
       page.replace_html 'updateForm', :partial => 'form'

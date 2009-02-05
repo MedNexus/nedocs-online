@@ -2,25 +2,20 @@ class Nedoc < ActiveRecord::Base
   belongs_to :user
 
   # after_create :calc_score
-  validates_presence_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait]
+  # validates_presence_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait]
+  
   # validate numeric for all fields
+  validates_numericality_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait], :only_integer => true
   
   def self.latest
     Nedoc.find(:first, :order => "created_at DESC")
   end
   
-  def calc_score
-    if self.total_respirators > 2 then
-      self.total_respirators = 2
-    end
+  def calc_score_and_save
     
-    self.nedocs_score = -20+(self.total_patients_ed/self.number_ed_beds)*85.8+(self.total_admits/self.number_hospital_beds)*600+self.total_respirators*13.4+self.longest_admit*0.93+self.last_patient_wait*5.64 rescue 200
-    if self.nedocs_score > 200 then
-      self.nedocs_score = 200
-    end
-
-    # self.user_id = ENV['RAILS_USER_ID']
-
+    # update the score parameter
+    calc_score
+    
     if self.save
       return self.nedocs_score if self.notify_list(true).size <= 0
       
@@ -36,6 +31,35 @@ class Nedoc < ActiveRecord::Base
     else
       return false
     end
+    
+  end
+    
+  def calc_score  
+
+    return false unless self.valid?
+
+    if self.total_respirators > 2 then
+      self.total_respirators = 2
+    end
+      
+    
+    # Courtesy of: http://hsc.unm.edu/emermed/nedocs_fin.shtml        
+    c = Float(self.number_ed_beds)
+		d = Float(self.total_patients_ed)
+		e = Float(self.total_respirators)
+		f = Float(self.longest_admit)
+		g = Float(self.number_hospital_beds)
+		h = Float(self.total_admits)
+		i = Float(self.last_patient_wait)
+
+
+    self.nedocs_score = (-20+(d/c)*85.8+ (h/g)*600+e*13.4+f*0.93 +i*5.64)
+    
+    if self.nedocs_score > 200 then
+      self.nedocs_score = 200
+    end
+    
+    return self.nedocs_score    
   end
   
   def image_file
