@@ -56,6 +56,18 @@ class NedocTest < Test::Unit::TestCase
     assert_equal(129, n.calc_score)
   end
   
+  def test_greater_than_2_respirators
+    n = Nedoc.new
+    n.number_ed_beds        = 35
+		n.total_patients_ed     = 37
+		n.total_respirators     = 4
+		n.longest_admit         = 17
+		n.number_hospital_beds  = 350
+		n.total_admits          = 16
+		n.last_patient_wait     = 2.75
+    assert_equal(156, n.calc_score)
+  end
+  
   def test_divide_by_zero_ed_beds
     n = Nedoc.new
     n.number_ed_beds        = 0
@@ -65,7 +77,7 @@ class NedocTest < Test::Unit::TestCase
 		n.number_hospital_beds  = 350
 		n.total_admits          = 14
 		n.last_patient_wait     = 4
-    assert_equal(n.calc_score, false)
+    assert_equal(n.calc_score, 200)
   end
   
   def test_divide_by_zero_hospital_beds
@@ -77,7 +89,7 @@ class NedocTest < Test::Unit::TestCase
 		n.number_hospital_beds  = 0
 		n.total_admits          = 14
 		n.last_patient_wait     = 4
-    assert_equal(n.calc_score, false)
+    assert_equal(n.calc_score, 200)
   end
   
   def test_missing_data

@@ -37,11 +37,6 @@ class Nedoc < ActiveRecord::Base
   def calc_score  
 
     return false unless self.valid?
-
-    if self.total_respirators > 2 then
-      self.total_respirators = 2
-    end
-      
     
     # Courtesy of: http://hsc.unm.edu/emermed/nedocs_fin.shtml        
     c = Float(self.number_ed_beds)
@@ -51,7 +46,10 @@ class Nedoc < ActiveRecord::Base
 		g = Float(self.number_hospital_beds)
 		h = Float(self.total_admits)
 		i = Float(self.last_patient_wait)
-
+    
+    # do not allow more than 2 respirators
+    e = 2 if e > 2
+    
     # make sure we don't divide by 0
     c = 1 if c <= 0
     g = 1 if g <= 0
@@ -155,17 +153,26 @@ class Nedoc < ActiveRecord::Base
   
   def self.graph_recent
     require 'google_chart'
-    sparklines = GoogleChart::LineChart.new('400x200', nil, false)
-    nedocs = Nedoc.find(:all, :conditions => "created_at > #{(6.months.ago).to_i}")
+    # sparklines = GoogleChart::LineChart.new('400x200', nil, false)
+    nedocs = Nedoc.find(:all, :conditions => "created_at > #{(6.months.ago).to_i}", :order => ["created_at ASC"])
+    data = nedocs.collect { |x| [x.created_at.to_i-nedocs[0].created_at.to_i ,x.nedocs_score] }
+    sc = GoogleChart::ScatterChart.new('400x200',nil)
+    sc.data "NEDOCS", data
+    # sc.point_sizes [10,15,30,55]
     
-    sparklines.data "NEDOCS Score", nedocs.collect{ |x| x.nedocs_score }
-    sparklines.show_legend = false
-    sparklines.axis :y, :range => [0, 200] 
+    # sparklines.data "NEDOCS Score", nedocs.collect{ |x| x.nedocs_score }
+    sc.show_legend = false
+    # range = data[data.size-1][0] - data[0][0]
+    
+    sc.axis :y, :range => [0, 200] 
+    # sc.axis :x, :range => [data[0][0], data[data.size-1][0]]
+    sc.max_value [data[data.size-1][0], 200]
+    
     # sparklines.axis :x, :range => [0, 21, 1]
-    sparklines.max_value 200
-    sparklines.fill(:chart, :solid, {:color => 'ededed'})
-    sparklines.fill(:background, :solid, {:color => 'ededed'})
-    return sparklines.to_url
+    # sc.max_value 200
+    sc.fill(:chart, :solid, {:color => 'ededed'})
+    sc.fill(:background, :solid, {:color => 'ededed'})
+    return sc.to_url
   end
 
   
