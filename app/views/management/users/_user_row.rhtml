@@ -1,0 +1,28 @@
+<%
+
+bgcolor = cycle('#eeeeee', '#ffffff')
+
+%>
+<tr style="background: <%= bgcolor %>;" valign="top">
+	<td>
+		<%= user_row.name %>
+	</td>
+	<td>
+		<%= user_row.username %>
+	</td>
+	<td>
+		<%= user_row.notify_threshold %>
+	</td>
+	<td>
+		<%= link_to_remote image_tag("interface/btn_edit.gif"), :url => {:action => "edit", :id => user_row.id} %>
+		&nbsp;
+		<%= link_to_remote image_tag("interface/btn_delete.gif"), :url => {:action => "destroy", :id => user_row.id}, :confirm => "Do you really want to delete #{user_row.username.upcase}?" %>
+	</td>
+</tr>
+<tr style="background: <%= bgcolor %>;">
+	<td colspan="4">
+		<div id="user_id_<%= user_row.id -%>" style="display: none; background: <%= bgcolor%>; margin-left: 20px">
+			&nbsp; 
+		</div>
+	</td>
+</tr>

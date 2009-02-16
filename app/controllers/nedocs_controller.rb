@@ -33,12 +33,14 @@ class NedocsController < ApplicationController
     # unless we already have an error, continue
     unless @error
       
-      if @item.notify_list.size > 0 and !params[:confirm]
+      if @item.nedocs_score >= Setting.confirmation_threshold and !params[:confirm]
+
         # we have to warn the user we're gonna email
         @notice = "The following people " +
-                  "will be notified of this score update:<br/><ul><li>" + @item.notify_list.collect{ |x| x.name }.join("</li><li>")
-        @notice += "</li></ul>"
-        
+                  "will be notified of this score update:<br/><ul><li>" + 
+                  @item.notify_list.collect{ |x| x.name }.join("</li><li>") +
+                  "</li></ul>" if @item.notify_list.size > 0
+                    
         # display with confirmation option
         render :update do |page|
           page.replace_html 'updateForm', :partial => 'confirm_form'

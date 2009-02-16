@@ -21,5 +21,7 @@ else
   ErrorEmailSender = 'noreply@nedocsonline.org'
   ErrorEmailRecipients = 'sabin+nedocs+error@sabindang.com'
   
+  IgnoreFrameworkFiles = ['user']  
   
+  build_number = 'Beta'
 end

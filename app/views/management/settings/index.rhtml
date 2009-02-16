@@ -37,10 +37,18 @@
 			</tr>
 			<tr>
 				<td>
+					Confirmation Threshold:
+				</td>
+				<td>
+					<%= text_field :setting, :confirmation_threshold, {:style => 'width: 220px' } %>
+				</td>
+			</tr>
+			<tr>
+				<td>
 					&nbsp;
 				</td>
 				<td>
-					<%= submit_tag "Save Settings" %>
+					<%= submit_tag "Save Settings", :class => "button" %>
 				</td>
 			</tr>
 		</table>

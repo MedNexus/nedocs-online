@@ -50,7 +50,10 @@ class ApplicationController < ActionController::Base
     session[:user_is_superuser] = (@user.is_superuser == 1)
     @user
   end
-   
+  
+  def is_logged_in_user?
+    session[:user_authenticated]
+  end
   
   
 end

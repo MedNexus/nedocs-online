@@ -1,12 +1,13 @@
 class Nedoc < ActiveRecord::Base
   belongs_to :user
 
-  # after_create :calc_score
-  # validates_presence_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait]
-  
   # validate numeric for all fields
   validates_numericality_of [:number_ed_beds, :number_hospital_beds, :total_patients_ed, :total_respirators, :longest_admit, :total_admits, :last_patient_wait]
-  
+
+  # NEDOC Score Level Attributes
+  @@NedocsColors = ['33b14d', 'fbe92d', 'ff8f29', 'eb2731', 'ee1667', 'dc168d' ]
+  @@NedocsMessage = ['Not Busy', 'Busy', 'Extremely Busy but Not Overcrowded', 'Overcrowded', 'Severely Over-Crowded', 'Dangerously Overcrowded']
+
   def self.latest
     Nedoc.find(:first, :order => "created_at DESC")
   end
@@ -56,10 +57,10 @@ class Nedoc < ActiveRecord::Base
     
     self.nedocs_score = (-20+(d/c)*85.8+ (h/g)*600+e*13.4+f*0.93 +i*5.64).round
     
-    if self.nedocs_score > 200 then
-      self.nedocs_score = 200
-    end
-    
+    # Make sure we're still on the scale
+    self.nedocs_score = 200 if self.nedocs_score > 200
+    self.nedocs_score = 0 if self.nedocs_score < 0
+
     return self.nedocs_score    
   end
   
@@ -98,84 +99,33 @@ class Nedoc < ActiveRecord::Base
       return true
     end
   end
+  
+  def level
+    return ((Float(self.nedocs_score + 19) / 40)).floor
+  end
 
   def color
-		if self.nedocs_score <= 20
-			return "33b14d"
-		end
-
-		if self.nedocs_score > 20 and self.nedocs_score <= 60
-			return "fbe92d"
-		end
-
-		if self.nedocs_score > 60 and self.nedocs_score <= 100
-			return "ff8f29"
-		end
-
-		if self.nedocs_score > 100 and self.nedocs_score <= 140
-			return "eb2731"
-		end
-
-		if self.nedocs_score > 140 and self.nedocs_score <= 180
-			return "ee1667"
-		end
-
-		if self.nedocs_score > 180
-			return "dc168d"
-		end
+    return @@NedocsColors[self.level] rescue "FFFFFF"
 	end
 	
 	def message
-  	if self.nedocs_score <= 20
-  		return "Not Busy"
-  	end
-	
-  	if self.nedocs_score > 20 and self.nedocs_score <=60
-  		return "Busy"
-  	end
-	
-  	if self.nedocs_score > 60 and self.nedocs_score <= 100
-  		return "Extremely Busy but Not Overcrowded"
-  	end
-	
-  	if self.nedocs_score > 100 and self.nedocs_score <= 140
-  		return "Overcrowded"
-  	end
-	
-  	if self.nedocs_score > 140 and self.nedocs_score <= 180
-  		return "Severely Over-Crowded"
-  	end		
-	
-  	if self.nedocs_score > 180
-  		return "Dangerously Overcrowded"
-  	end
+    return @@NedocsMessage[self.level] rescue "&nbsp;"
   end
   
   def self.graph_recent
     require 'google_chart'
-    # sparklines = GoogleChart::LineChart.new('400x200', nil, false)
     nedocs = Nedoc.find(:all, :conditions => "created_at > #{(6.months.ago).to_i}", :order => ["created_at ASC"])
     data = nedocs.collect { |x| [x.created_at.to_i-nedocs[0].created_at.to_i ,x.nedocs_score] }
     sc = GoogleChart::ScatterChart.new('400x200',nil)
     sc.data "NEDOCS", data
-    # sc.point_sizes [10,15,30,55]
-    
-    # sparklines.data "NEDOCS Score", nedocs.collect{ |x| x.nedocs_score }
     sc.show_legend = false
-    # range = data[data.size-1][0] - data[0][0]
-    
-    sc.axis :y, :range => [0, 200] 
-    # sc.axis :x, :range => [data[0][0], data[data.size-1][0]]
+    sc.axis :y, :labels => [0,20,40,60,80,100,120,140,160,180,200] 
+    sc.axis :x, :labels => [nedocs[0].created_at.localtime.strftime("%m-%d-%Y"), nedocs.last.created_at.localtime.strftime("%m-%d-%Y")]
     sc.max_value [data[data.size-1][0], 200]
     
-    # sparklines.axis :x, :range => [0, 21, 1]
-    # sc.max_value 200
     sc.fill(:chart, :solid, {:color => 'ededed'})
     sc.fill(:background, :solid, {:color => 'ededed'})
     return sc.to_url
   end
-
-  
-  
   
 end

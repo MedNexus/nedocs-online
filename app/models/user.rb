@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_uniqueness_of :first_name, :scope => [:last_name, :active]  
   
+  def name ; [self.first_name, self.last_name].compact.join(" ") ; end
+  
+  SaltLength = 16 # :nodoc:
+  
   def self.authenticate(login,pass)
     u=find(:first, :conditions=> ["username = ?", login])
     return nil if u.nil?
@@ -64,8 +68,16 @@ class User < ActiveRecord::Base
     return (self.is_superuser == 1)
   end
   
+  def send_notification?
+    return (self.send_notifications == 1)
+  end
+  
   def self.list
     User.find(:all, :conditions => [ "active = 1" ], :order => 'last_name, first_name, username')
+  end
+  
+  def self.list_inactive
+    User.find(:all, :conditions => [ "active = 0" ], :order => 'last_name, first_name, username')
   end
   
 end

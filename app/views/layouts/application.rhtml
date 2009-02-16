@@ -12,19 +12,41 @@
   </head>
   
   <body<%= @onload ? " onload=\"#{@onload}\"" : '' %><%= @onkeypress ? " onkeypress=\"#{@onkeypress}\"" : '' %>>
-        <div id='institutionHeader' style='text-align: center; margin: 0 auto; width: 900px; padding-top: 30px; padding-bottom: 40px; background-color: #cccccc'>
-					<%= render :partial => '/shared/logo' %><br/>NEDOCS System
-				</div>
-      	<div style="margin: 0 auto; width: 900px">
-				<table cellpadding="0" cellspacing="0" border="0" width="900" align="center" bgcolor="#cccccc">
-        <tr>
-            <td>
-                <div id='mainContent'>
-                    <%= yield %>
-                </div>
-            </td>
-        </tr>
-      </table>
-			</div>
+	<center>  
+	<table cellpadding="0" cellspacing="0" border="0" width="900" align="center" bgcolor="#ffffff">
+      <tr class="noprint">
+        <td style="padding: 12px;">
+          <span id="institutionHeader"><%= render :partial => '/shared/logo' %></span>
+        </td>
+        <td width="305" style="padding: 12px 12px 6px 0px;">
+					<%- if is_logged_in_user? -%>
+            <%= render 'shared/navigation' %>
+          <%- end -%>
+          
+        </td>
+      </tr>
+      <tr class="noprint">
+        <td colspan="2"><img src="/images/interface/divider.gif" width="900" height="20" style="float:left;" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" bgcolor="#cccccc">
+		            <div id="mainContent">
+		              <%= yield %>
+		              <br clear="all" />
+		            </div>
+		            <img src="/images/interface/bottom.gif" width="900" height="5" style="float:left;" class="noprint" />
+		          </td>
+		        </tr>
+
+		        <tr class="footer">
+		          <td class="footer">
+								&nbsp;
+		          </td>
+		          <td class="footer" align="right">
+		            powered by NedocsOnline
+		          </td>
+		        </tr>
+    </table>
+		</center>
   </body>
 </html>

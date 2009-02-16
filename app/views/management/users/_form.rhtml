@@ -8,9 +8,6 @@ else
   @save = "Save User"
 end -%>
 
-<div class='individualCard' id='formCard' style='width: 330px'>
-  <div class='cardHeader'><span style='float: left'><%= @str%> USER</span></div>
-  <div id='divForm' class='cardContent' style='margin: auto; width: 300px;'>
 <%= flash_message %>
 
 <%= form_remote_tag :url => @url,
@@ -19,28 +16,68 @@ end -%>
                     
 <table>
     <tr>
-        <td>User Name:</td>
-        <td><%= text_field :item, :username, {:style => 'width: 200px'} %></td>
-    </tr>
+        <td colspan="2">User Name:</td>
+		</tr>
+		<tr>
+			<td colspan="2"><%= text_field :item, :username, {:style => 'width: 255px'} %></td>
+		</tr>
+		
+		
     <tr>
         <td>First Name:</td>
-        <td><%= text_field :item, :first_name, {:style => 'width: 200px' } %></td>
+				<td>Last Name:</td>
+		</tr>
+		<tr>
+        <td><%= text_field :item, :first_name, {:style => 'width: 125px' } %></td>
+        <td><%= text_field :item, :last_name, {:style => 'width: 125px' } %></td>
     </tr>
-    <tr>
-        <td>Last Name:</td>
-        <td><%= text_field :item, :last_name, {:style => 'width: 200px' } %></td>
-    </tr>
-    <tr>
-        <td>Password:</td>
-        <td><%= text_field :item, :first_name, {:style => 'width: 200px' } %></td>
-    </tr>
+
+		<tr>
+				<td colspan="2">Notification Address:</td>
+		</tr>
+		<tr>
+				<td colspan="2"><%= text_field :item, :notify_address, {:style => 'width: 255px' } %></td>
+		</tr>
+		
+		<tr>
+			<td>Threshold:</td>
+			<td>Send Notifications?</td>
+		</tr>
+		<tr>
+			<td><%= text_field :item, :notify_threshold, {:style => 'width: 100px' } %></td>
+			<td><%= select :item, :send_notifications, [["Yes", 1], ["No", 0]]%></td>
+		</tr>
+				
+    
+		<tr>
+			<td>Password:</td>
+			<td>Confirm Password:</td>
+		</tr>
+		<tr>
+	    <td><%= password_field :item, :password, :style => "width: 125px" %></td>
+			<td><%= password_field :item, :password_confirmation, :style => "width: 125px" %></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">Site Administrator:</td>
+		</tr>
+		<tr>
+			<td colspan="2"><%= select :item, :is_superuser, [["Yes", 1], ["No", 0]]%></td>
+		</tr>
+			
+			
+		
+		<tr>
+			<td colspan="2">
+				<%= submit_tag @save, :class => "button" %>
+				<%= link_to_function "cancel", "new Effect.toggle('user_id_#{@item.id}', 'blind', { duration: 0.25 });" unless @item.new_record? %>
+			</td>
+		</tr>
+		
 </table>
             
             
-            <%= submit_tag @save, :class => "button" %>
+            
 <% end_form_tag -%>
 
 <%= javascript_tag "Form.enable('mainForm');" %>
-
-</div>
-</div>

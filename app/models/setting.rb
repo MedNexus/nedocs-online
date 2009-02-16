@@ -41,6 +41,15 @@ class Setting < ActiveRecord::Base
     s.save
   end
   
+  def self.confirmation_threshold
+    Setting.find_by_name('confirmation_threshold').value.to_i rescue 180
+  end
+  
+  def self.confirmation_threshold=(val)
+    s = Setting.find_or_create_by_name('confirmation_threshold')
+    s.value = val
+    s.save
+  end
   
   # Get the Time Zone or Default to PST
   def self.time_zone

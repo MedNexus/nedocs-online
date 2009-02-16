@@ -1,0 +1,9 @@
+<table border=0 cellspacing=0 cellpadding=3 style="border: 2px solid #999999">
+	<tr style="background: #999999; color: white">
+		<td width="200">Name</td>
+		<td width="100">User Name</td>
+		<td width="100">Threshold</td>
+		<td width="50">&nbsp;</td>
+	</tr>
+	<%= render :partial => 'user_row', :collection => User.list || [] %>
+</table>

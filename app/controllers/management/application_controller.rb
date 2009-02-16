@@ -17,11 +17,11 @@ class Management::ApplicationController < ApplicationController
     
     csvData = File.open(csvname, 'w')
     CSV::Writer.generate(csvData, ',') do |csv|
-      labels = [ 'created', 'nedocs score', 'longest_admit', 'last patient wait', 'total ed patients', 'number of hospital beds', 'number ed beds', 'total admits', 'total respirators', 'user name' ]
+      labels = [ 'created', 'created timestamp', 'nedocs score', 'longest_admit', 'last patient wait', 'total ed patients', 'number of hospital beds', 'number ed beds', 'total admits', 'total respirators', 'user name' ]
       csv << labels
       
       nedocs.each do |n|
-        row = [ n.created_at, n.nedocs_score, n.longest_admit, n.last_patient_wait, n.total_patients_ed, n.number_hospital_beds, n.number_ed_beds, n.total_admits, n.total_respirators, n.user.username ]
+        row = [ n.created_at, n.created_at.to_i, n.nedocs_score, n.longest_admit, n.last_patient_wait, n.total_patients_ed, n.number_hospital_beds, n.number_ed_beds, n.total_admits, n.total_respirators, n.user.username ]
 
         csv << row
       end

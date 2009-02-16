@@ -4,8 +4,9 @@
 			<div class='individualCard' id='formCard' style='width: 370px'>
 			  <div class='cardHeader'><span style='float: left'>Admin Tools</span></div>
 			  <div id='divForm' class='cardContent' style='margin: auto; width: 340px;'>
+					<%= flash_message %>
 					<ul>
-						<li>Manage Users<% # link_to "Manage Users", :controller => "/management/users" %></li>
+						<li><%= link_to "Manage Users", :controller => "/management/users" %></li>
 						<li><%= link_to "Change Settings", :controller => "/management/settings" %></li>
 						<li><%= link_to "Download Scores", :controller => "/management/admin", :action => "download_csv" %></li>
 						<li><%= link_to "Back to Score Screen", :controller => "/nedocs" %></li>

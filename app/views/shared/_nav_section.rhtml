@@ -1,0 +1,6 @@
+<div id="btn_<%= nav_section %>" onmouseover="showSimpleRollover(this.id);" onmouseout="hideSimpleRollover(this.id);" style="float: left; margin-left: 7px;">
+  <a href="<%= urls[nav_section] || '/' + nav_section %>">
+    <img id="btn_<%= nav_section %>_std" src="/images/navigation/btn_<%= nav_section %><%= ((nav_section == 'home' && controller.controller_name == 'content' && params[:section] == '') || (params[:section] == nav_section)) ? '_hover' : '' %>.gif" border="0" class="nav" style="z-index: 100" alt="<%= nav_section.gsub('_', ' ') %>" />
+    <img id="btn_<%= nav_section %>_hover" src="/images/navigation/btn_<%= nav_section %>_hover.gif" border="0" class="nav" style="display: none;" alt="<%= nav_section.gsub('_', ' ') %>" />
+  </a>
+</div>

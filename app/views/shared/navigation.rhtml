@@ -1,0 +1,19 @@
+<%- if is_logged_in_user? -%>
+<%-
+    sections = []
+    sections << 'admin' if User.find_by_id(session[:user_id]).is_superuser?
+    
+    subsections = {}
+    translations = {}
+    
+    urls = {
+      'admin' => '/admin'
+    }
+
+-%>
+
+<div style="float: right;">
+  <%= render :partial => '/shared/nav_section', :collection => sections, :locals => { :subsections => subsections, :translations => translations, :urls => urls } %>
+  <div class="clearer">&nbsp;</div>
+</div>
+<%- end -%>
