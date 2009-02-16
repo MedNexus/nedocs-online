@@ -16,7 +16,7 @@ else
   FopExec = File.join(RAILS_ROOT, 'vendor', 'fop', 'fop-0.94', 'fop')
   FopConf = File.join(RAILS_ROOT, 'vendor', 'fop', 'fop-0.94', 'conf', 'fop.xconf')
   
-  SSL_REDIRECTS_ON = false
+  SSL_REDIRECTS_ON = true
   
   ErrorEmailSender = 'noreply@nedocsonline.org'
   ErrorEmailRecipients = 'sabin+nedocs+error@sabindang.com'
