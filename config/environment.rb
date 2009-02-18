@@ -16,12 +16,13 @@ else
   FopExec = File.join(RAILS_ROOT, 'vendor', 'fop', 'fop-0.94', 'fop')
   FopConf = File.join(RAILS_ROOT, 'vendor', 'fop', 'fop-0.94', 'conf', 'fop.xconf')
   
-  SSL_REDIRECTS_ON = true
+  SSL_REDIRECTS_ON = false
   
   ErrorEmailSender = 'noreply@nedocsonline.org'
   ErrorEmailRecipients = 'sabin+nedocs+error@sabindang.com'
   
   IgnoreFrameworkFiles = ['user']  
   
+  @javascripts = ['DD_belatedPNG.js']
   build_number = 'Beta'
 end

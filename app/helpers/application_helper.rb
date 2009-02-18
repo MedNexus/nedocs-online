@@ -20,6 +20,7 @@ module ApplicationHelper
   def graph_latest_image(id, options = {})
     options[:src] = url_for :controller => '/nedocs', :action => 'graph_latest', :id => id
     options[:alt] = id.to_s
+    options[:class] = "nedocs_graph"
     options[:oncontextmenu] = "return false;"
     tag("img", options)
   end

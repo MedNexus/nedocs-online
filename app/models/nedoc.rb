@@ -65,7 +65,7 @@ class Nedoc < ActiveRecord::Base
   end
   
   def image_file
-    File.join(SITE_ROOT, 'public', 'images', self.nedocs_score.to_s + ".png")
+    File.join(SITE_ROOT, 'public', 'images', self.nedocs_score.to_s + ".gif")
   end
   
   def image
