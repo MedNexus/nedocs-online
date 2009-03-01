@@ -1,10 +1,14 @@
 <div id='placeholder' style="width:400px;height:300px;"></div>
-<button id="last500" class="button">500 Most Recent</button>
-<button id="lastmonth" class="button">Last Month</button>
-<button id="lastweek" class="button">Last Week</button>
-<button id="last24" class="button">Last 24 Hours</button>
+<br/>
+<div style="text-align: center">
+<button id="last500" >Last 500</button>
+<button id="lastmonth" >Month</button>
+<button id="lastweek" >Week</button>
+<button id="last24" >24 Hours</button>
+</div>
+<script language="javascript" type="text/javascript" src="javascripts/excanvas.pack.js"></script>
 <script language="javascript" type="text/javascript" src="javascripts/jquery.js"></script>
-<script language="javascript" type="text/javascript" src="javascripts/jquery.flot.js"></script>
+<script language="javascript" type="text/javascript" src="javascripts/jquery.flot.pack.js"></script>
 
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
@@ -12,7 +16,7 @@ $(function () {
     $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y" } });
 
     $("#last500").click(function () {
-        $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y", } });
+        $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y" } });
     });
 
     $("#lastmonth").click(function () {
