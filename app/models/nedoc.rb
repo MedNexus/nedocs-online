@@ -117,21 +117,19 @@ class Nedoc < ActiveRecord::Base
   end
   
   def self.graph_recent
-    graph_image = Magick::Image.new(400,200) { self.background_color = 'transparent' }
+    require 'google_chart'
+    nedocs = Nedoc.find(:all, :conditions => "created_at > #{(6.months.ago).to_i}", :order => ["created_at ASC"])
+    data = nedocs.collect { |x| [x.created_at.to_i-nedocs[0].created_at.to_i ,x.nedocs_score] }
+    sc = GoogleChart::ScatterChart.new('400x200',nil)
+    sc.data "NEDOCS", data
+    sc.show_legend = false
+    sc.axis :y, :labels => [0,20,40,60,80,100,120,140,160,180,200] 
+    sc.axis :x, :labels => [nedocs[0].created_at.localtime.strftime("%m-%d-%Y"), nedocs.last.created_at.localtime.strftime("%m-%d-%Y")]
+    sc.max_value [data[data.size-1][0], 200]
     
-    # require 'google_chart'
-    # nedocs = Nedoc.find(:all, :conditions => "created_at > #{(6.months.ago).to_i}", :order => ["created_at ASC"])
-    # data = nedocs.collect { |x| [x.created_at.to_i-nedocs[0].created_at.to_i ,x.nedocs_score] }
-    # sc = GoogleChart::ScatterChart.new('400x200',nil)
-    # sc.data "NEDOCS", data
-    # sc.show_legend = false
-    # sc.axis :y, :labels => [0,20,40,60,80,100,120,140,160,180,200] 
-    # sc.axis :x, :labels => [nedocs[0].created_at.localtime.strftime("%m-%d-%Y"), nedocs.last.created_at.localtime.strftime("%m-%d-%Y")]
-    # sc.max_value [data[data.size-1][0], 200]
-    # 
-    # sc.fill(:chart, :solid, {:color => 'ededed'})
-    # sc.fill(:background, :solid, {:color => 'ededed'})
-    # return sc.to_url
+    sc.fill(:chart, :solid, {:color => 'ededed'})
+    sc.fill(:background, :solid, {:color => 'ededed'})
+    return sc.to_url
   end
   
 end

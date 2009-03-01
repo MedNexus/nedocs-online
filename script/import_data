@@ -15,8 +15,8 @@ require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
 hospital = ARGV.shift || ENV['RAILS_HOSPITAL']
 import_file = ARGV.shift
 
-hospital = "harbor"
-import_file = "/Users/sdang/Desktop/Nedocs.csv"
+# hospital = "harbor"
+# import_file = "/Users/sdang/Desktop/Nedocs.csv"
 
 if import_file == nil || hospital == nil
   print "\n"
