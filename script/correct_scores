@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+# Script that will correct all NEDOCS score
+# to use the latest algorithm, warning running
+# this script will change historial NEDOCS data!!
+
+ENV['RAILS_ENV'] ||= 'development'
+require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
+
+hospital = ARGV.shift || ENV['RAILS_HOSPITAL']
+
+unless hospital
+  print "\nusage:\n"
+  print "correct_scores <hospital code>\n\n"
+else
+  ActiveRecord::Base.connect_to_hospital(hospital)
+
+  scores = Nedoc.find(:all, :conditions => ["nedocs_score is not null"])
+  scores_updated = 0
+  scores.each do |n|
+    old_score = n.nedocs_score
+    new_score = n.calc_score
+    if new_score != old_score
+      print "Updating Score for #{n.created_at} from #{old_score} to #{new_score}\n"
+    
+      # redundant ... I know... but I'm kinda OCD like that
+      n.nedocs_score = new_score
+      n.save
+      scores_updated = scores_updated + 1
+    end
+  end
+  
+  print "\nTotal #{scores_updated} scores updated\n"
+end
