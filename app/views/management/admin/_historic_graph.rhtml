@@ -31,7 +31,7 @@ $(function () {
     $("#last24").click(function () {
 				var today = new Date();
 				var last_24 = new Date();
-				last_24.setDate(today.getHours()-24);
+				last_24.setDate(today.getDate()-1);
 				
         $.plot($("#placeholder"), [d], { xaxis: {
             mode: "time",
