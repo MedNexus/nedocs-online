@@ -8,7 +8,10 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 4
   validates_uniqueness_of :username, :message => 'already in use'
   validates_confirmation_of :password
-  validates_uniqueness_of :first_name, :scope => [:last_name, :active]  
+  validates_uniqueness_of :first_name, :scope => [:last_name, :active]
+  
+  has_one :email_template
+  belongs_to :email_template
   
   def name ; [self.first_name, self.last_name].compact.join(" ") ; end
   

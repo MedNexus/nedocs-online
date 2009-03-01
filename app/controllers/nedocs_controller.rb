@@ -13,9 +13,10 @@ class NedocsController < ApplicationController
   
   def latest_nedocs_score
     @nedoc = Nedoc.latest
-    unless @nedoc.nedocs_score
-      @nedoc.calc_score
+    unless @nedoc
+      return true
     end
+    @nedoc.calc_score unless @nedoc.nedocs_score
   end
   
   def new

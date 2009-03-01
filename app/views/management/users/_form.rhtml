@@ -59,10 +59,12 @@ end -%>
 		</tr>
 		
 		<tr>
-			<td colspan="2">Site Administrator:</td>
+			<td>Template:</td>
+			<td>Admin:</td>
 		</tr>
 		<tr>
-			<td colspan="2"><%= select :item, :is_superuser, [["Yes", 1], ["No", 0]]%></td>
+			<td><%= select :item, :email_template_id, EmailTemplate.list.collect { |x| [x.name, x.id] }%></td>
+			<td><%= select :item, :is_superuser, [["Yes", 1], ["No", 0]]%></td>
 		</tr>
 			
 			

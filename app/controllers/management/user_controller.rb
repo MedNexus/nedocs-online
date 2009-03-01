@@ -9,4 +9,5 @@ class Management::UserController < Management::ApplicationController
   def success_popup
     # render :layout => 'login'
   end
+  
 end

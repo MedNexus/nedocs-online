@@ -7,6 +7,7 @@ else
   # general
   #
   UserRedirectAfterLogin = {:controller => "/nedocs", :action => "index" }
+  UserRedirectAfterLogout = {:controller => "/nedocs", :action => "index" }
   UserSessionTimeout = 60.minutes
   
   # set up PATH so we can run stuff, like svnversion and java

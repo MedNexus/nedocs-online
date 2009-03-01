@@ -1,0 +1,22 @@
+<%
+
+bgcolor = cycle('#eeeeee', '#ffffff')
+
+%>
+<tr style="background: <%= bgcolor %>;" valign="top">
+	<td>
+		<%= template_row.name %>
+	</td>
+	<td>
+		<%= link_to_remote image_tag("interface/btn_edit.gif"), :url => {:action => "edit", :id => template_row.id} %>
+		&nbsp;
+		<%= link_to_remote image_tag("interface/btn_delete.gif"), :url => {:action => "destroy", :id => template_row.id}, :confirm => "Do you really want to delete #{template_row.name.upcase}?" %>
+	</td>
+</tr>
+<tr style="background: <%= bgcolor %>;">
+	<td colspan="4">
+		<div id="template_id_<%= template_row.id -%>" style="display: none; background: <%= bgcolor%>; margin-left: 20px">
+			&nbsp; 
+		</div>
+	</td>
+</tr>

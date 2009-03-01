@@ -1,0 +1,51 @@
+<% if @item.new_record?
+  @url = {:action => "new" }
+  @str = "ADD"
+  @save = "Add Template"
+else
+  @url = {:action => "update", :id => @item.id }
+  @str = "EDIT"
+  @save = "Save Template"
+end -%>
+
+<%= flash_message %>
+
+<%= form_remote_tag :url => @url,
+                    :html => { :id => 'mainForm' }, 
+                    :loading => "Form.disable('mainForm')" -%>
+                    
+<table>
+    <tr>
+        <td>Name:</td>
+		</tr>
+		<tr>
+			<td><%= text_field :item, :name, {:style => 'width: 255px'} %></td>
+		</tr>
+
+		<% for i in 0..5 do %>
+		<tr>
+			<td>
+				<%= Nedoc.message(i) -%>:
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= text_area :item, "content_#{i}", :rows => "5", :style => 'width: 255px' %>
+			</td>
+		</tr>
+		<% end %>
+
+		<tr>
+			<td>
+				<%= submit_tag @save, :class => "button" %>
+				<%= link_to_function "cancel", "new Effect.toggle('template_id_#{@item.id}', 'blind', { duration: 0.25 });" unless @item.new_record? %>
+			</td>
+		</tr>
+		
+</table>
+            
+            
+            
+<% end_form_tag -%>
+
+<%= javascript_tag "Form.enable('mainForm');" %>

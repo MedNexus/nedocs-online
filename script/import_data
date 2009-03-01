@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'fastercsv'
+
+# Import historal CSV NEDOCS data
+# Source File should be in the format of:
+#       YYYY/MM/DD    YYYY/MM/DD
+# hh:mm         X             X
+# hh:mm         X             X
+
+ENV['RAILS_ENV'] ||= 'development'
+require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
+
+hospital = ARGV.shift || ENV['RAILS_HOSPITAL']
+import_file = ARGV.shift
+
+hospital = "harbor"
+import_file = "/Users/sdang/Desktop/Nedocs.csv"
+
+if import_file == nil || hospital == nil
+  print "\n"
+  print "importData.rb <hospital> <filename>"
+  print "\n\n"
+else
+  ActiveRecord::Base.connect_to_hospital(hospital)
+  import_data = FasterCSV.read(import_file)
+  
+  dates = import_data[3]
+  for i in (0..dates.length)
+    next if dates[i].empty?
+    
+    d = dates[i]
+    
+    # rows 4 through 12 contain data
+    for k in (4..12)
+      t = import_data[k][0]
+      unless import_data[k][i].empty?
+        time = Time.parse(d + " " + t + " PST")
+        score = import_data[k][i]
+        print "#{time}: #{score} "
+        n = Nedoc.new
+        n.user_id = 1
+        n.nedocs_score = score
+        n.created_at = time
+        n.number_ed_beds = 999
+        n.number_hospital_beds = 999
+        n.total_patients_ed = 999
+        n.total_respirators = 999
+        n.longest_admit = 999
+        n.total_admits = 999
+        n.last_patient_wait = 999
+        
+        if n.save
+          print "imported succesfully\n"
+        else
+          print "error\n"
+        end
+        
+      end
+    end
+  end
+  
+end
