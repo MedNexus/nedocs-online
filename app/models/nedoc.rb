@@ -118,7 +118,7 @@ class Nedoc < ActiveRecord::Base
   
   def self.graph_recent
     require 'google_chart'
-    nedocs = Nedoc.find(:all, :conditions => "created_at > #{(6.months.ago).to_i}", :order => ["created_at ASC"])
+    nedocs = Nedoc.find(:all, :conditions => ["created_at > ?", 6.months.ago], :order => ["created_at ASC"])
     data = nedocs.collect { |x| [x.created_at.to_i-nedocs[0].created_at.to_i ,x.nedocs_score] }
     sc = GoogleChart::ScatterChart.new('400x200',nil)
     sc.data "NEDOCS", data
@@ -132,4 +132,8 @@ class Nedoc < ActiveRecord::Base
     return sc.to_url
   end
   
+  def self.graph_recent_data
+    # pull up the last years worth of data, or the last 500 points
+    Nedoc.find(:all, :conditions => ["created_at > ?", 12.month.ago], :order => ["created_at DESC"], :limit => 500).collect { |x| "[#{x.created_at.to_i*1000},#{x.nedocs_score}]" }
+  end
 end

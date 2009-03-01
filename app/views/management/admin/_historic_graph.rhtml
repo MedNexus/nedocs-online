@@ -1,0 +1,58 @@
+<div id='placeholder' style="width:400px;height:300px;"></div>
+<button id="last500" class="button">500 Most Recent</button>
+<button id="lastmonth" class="button">Last Month</button>
+<button id="lastweek" class="button">Last Week</button>
+<button id="last24" class="button">Last 24 Hours</button>
+<script language="javascript" type="text/javascript" src="javascripts/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="javascripts/jquery.flot.js"></script>
+
+<script id="source" language="javascript" type="text/javascript">
+$(function () {
+		var d = [<%= Nedoc.graph_recent_data.join(",") -%>];
+    $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y" } });
+
+    $("#last500").click(function () {
+        $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y", } });
+    });
+
+    $("#lastmonth").click(function () {
+				var today = new Date();
+				var last_month = new Date();
+				last_month.setDate(today.getDate()-31);
+				
+        $.plot($("#placeholder"), [d], { xaxis: {
+            mode: "time",
+						timeformat: "%m/%d/%y",
+            min: last_month.getTime(),
+            max: today.getTime()
+        } });
+    });
+
+    $("#last24").click(function () {
+				var today = new Date();
+				var last_24 = new Date();
+				last_24.setDate(today.getHours()-24);
+				
+        $.plot($("#placeholder"), [d], { xaxis: {
+            mode: "time",
+						timeformat: "%H:%M",
+						minTickSize: [1, "hour"],
+            min: last_24.getTime(),
+            max: today.getTime()
+        } });
+    });
+
+    $("#lastweek").click(function () {
+			var today = new Date();
+			var last_week = new Date();
+			last_week.setDate(today.getDate()-7);
+        $.plot($("#placeholder"), [d], { xaxis: {
+            mode: "time",
+						timeformat: "%m/%d/%y",
+            minTickSize: [1, "day"],
+            min: last_week.getTime(),
+            max: today.getTime()
+        } });
+    });
+});
+</script>
