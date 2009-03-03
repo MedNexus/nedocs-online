@@ -65,7 +65,73 @@ test = User.create(
         :password => 'juliet19',
         :first_name => 'nedocs10',
         :last_name => 'nedocs10')
-                        
+        
+test = User.create(
+        :username => 'roger',
+        :password => 'rlewis443',
+        :first_name => "Roger",
+        :last_name => "Lewis",
+        :send_notifications => 0,
+        :is_superuser => 1,
+        :notify_address => "roger@emedharbor.edu",
+        :notify_threshold => 200 )
+
+
+test = User.create(
+        :username => 'cstevens',
+        :password => 'cstevens251',
+        :first_name => "Carl",
+        :last_name => "Stevens",
+        :send_notifications => 0,
+        :is_superuser => 1,
+        :notify_address => "cstevens@emedharbor.edu",
+        :notify_threshold => 200 )                 
+
+test = User.create(
+        :username => 'ross',
+        :password => 'rdonaldson913',
+        :first_name => "Ross",
+        :last_name => "Donaldson",
+        :send_notifications => 0,
+        :is_superuser => 1,
+        :notify_address => "ross@rossdonaldson.com",
+        :notify_threshold => 200 )
+
+test = User.create(
+        :username => 'peterson',
+        :password => 'mpeterson889',
+        :first_name => "Mike",
+        :last_name => "Peterson",
+        :send_notifications => 0,
+        :is_superuser => 1,
+        :notify_address => "peterson@emedharbor.edu",
+        :notify_threshold => 200 )               
+
+test = User.create(
+        :username => 'hock',
+        :password => 'bhockberger537',
+        :first_name => "Bob",
+        :last_name => "Hockberger",
+        :send_notifications => 0,
+        :is_superuser => 1,
+        :notify_address => "hock@emedharbor.edu",
+        :notify_threshold => 200 )
+        
+test = User.create(
+        :username => 'sabin',
+        :password => 'fdxfdx1',
+        :first_name => "Sabin",
+        :last_name => "Dang",
+        :send_notifications => 1,
+        :is_superuser => 1,
+        :notify_address => "sabin+nedocs+harbor@sabindang.com",
+        :notify_threshold => 1 )
+        
+test = User.create(:username => 'sblack', :password => 'sblack043', :first_name => "Susan", :last_name => "Black", :send_notifications => 1, :is_superuser => 0, :notify_address => "sblack@dhs.lacounty.gov", :notify_threshold => 180)
+
+test = User.create(:username => 'lfields', :password => 'lfields224', :first_name => "Lori", :last_name => "Fields", :send_notifications => 1, :is_superuser => 0, :notify_address => "lfields@dhs.co.la.ca.us", :notify_threshold => 180)
+        
+        
 Setting.create  :name => 'public_display_score',
                 :value => 'true'
 Setting.create  :name => 'number_of_hospital_beds',
