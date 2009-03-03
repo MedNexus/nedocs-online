@@ -6,4 +6,5 @@ public/images/*.gif
 public/system/maintenance*
 db/create_sample_data_*
 tmp
-
+Capfile
+config/deploy.rb
