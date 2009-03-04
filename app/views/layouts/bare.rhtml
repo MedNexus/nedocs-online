@@ -1,0 +1,5 @@
+<% for stylesheet in [ 'default', 'nedocs' ].concat(@stylesheets || []).compact -%>
+	<%= stylesheet_link_tag stylesheet %>
+<% end -%>
+
+<%= yield %>

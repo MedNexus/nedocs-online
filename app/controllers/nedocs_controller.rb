@@ -1,5 +1,5 @@
 class NedocsController < ApplicationController
-  skip_before_filter :authenticate_user, :only => ['graph_latest']
+  skip_before_filter :authenticate_user, :only => ['graph_latest', 'score_box']
   before_filter :latest_nedocs_score
   skip_after_filter :compress_output, :only => ['graph_latest']
   
@@ -70,6 +70,10 @@ class NedocsController < ApplicationController
       page.replace_html 'graph', :partial => 'graph'
       page.visual_effect :highlight, 'graphCard', {:duration => '1' } if saved
     end
+  end
+  
+  def score_box
+    render :partial => 'graph', :layout => 'bare'
   end
   
   def graph_latest
