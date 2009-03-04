@@ -1,0 +1,3 @@
+NEDOCS Based Overcrowding Alert System
+
+This application allows hospital Emergency Departments to calculate their NEDOCS score and send out over crowding notifications. Administrators can define score thresholds for notifications on a per user basis. Additionally, all NEDOCS data is archived and available to administrators in spreadsheet and graphical forms.
