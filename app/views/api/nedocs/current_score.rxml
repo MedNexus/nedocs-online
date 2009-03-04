@@ -1,0 +1,11 @@
+xml.instruct! :xml, :version => '1.0'
+
+xml.NedocScore {
+    xml.id(@nedoc.id)
+    xml.created_at_utc(@nedoc.created_at.to_i)
+    xml.created_at_human(time_ago_in_words(@nedoc.created_at) + " ago")
+    xml.score(@nedoc.nedocs_score)
+    xml.message(@nedoc.message)
+    xml.color(@nedoc.color)
+    xml.score_bar_url(url_for(:controller => "nedocs", :action => "graph", :id => @nedoc.id))
+}

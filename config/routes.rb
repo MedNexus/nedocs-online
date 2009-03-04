@@ -12,6 +12,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'admin/settings/:action/:id',       :controller => 'management/settings'
   map.connect 'admin/email_templates/:action/:id',:controller => 'management/email_templates'
   map.connect 'admin/:action/:id',                :controller => 'management/admin'
+  
+  map.connect 'api/nedocs/:action/:id',           :controller => 'api/nedocs'
 
   # Rails default
   map.connect ':controller/:action/:id'
