@@ -10,6 +10,8 @@ class Management::SettingsController < Management::ApplicationController
     Setting.number_of_hospital_beds   = params[:setting][:number_of_hospital_beds]
     Setting.number_of_ed_beds         = params[:setting][:number_of_ed_beds]
     Setting.confirmation_threshold    = params[:setting][:confirmation_threshold]
+    Setting.time_zone                 = params[:setting][:time_zone]
+    session[:time_zone]               = params[:setting][:time_zone]
     
     flash[:notice] = "Settings Updated"
     redirect_to :controller => "/management/admin"

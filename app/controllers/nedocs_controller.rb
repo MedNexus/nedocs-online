@@ -1,7 +1,7 @@
 class NedocsController < ApplicationController
   skip_before_filter :authenticate_user, :only => ['graph_latest', 'score_box']
   before_filter :latest_nedocs_score, :except => ['graph']
-  skip_after_filter :compress_output, :only => ['graph_latest', 'graph']
+  skip_after_filter :compress_output, :only => ['graph_latest', 'graph', 'score_box_image']
   
   def index
     @item = Nedoc.new()
@@ -75,6 +75,15 @@ class NedocsController < ApplicationController
   def score_box
     render :partial => 'graph', :layout => 'bare'
   end
+  
+  def score_box_image
+    @nedoc = Nedoc.latest
+    send_file @nedoc.score_box_image,
+        :filename => "nedocs_score_box.png",
+        :disposition => 'inline',
+        :type => "image/png"
+  end
+        
   
   def graph
     @nedoc = Nedoc.find_by_id(params[:id])

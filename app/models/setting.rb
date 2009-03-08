@@ -10,6 +10,17 @@ class Setting < ActiveRecord::Base
     s.value = val
     s.save
   end
+  
+  def self.time_zone=(val)
+    s = Setting.find_or_create_by_name('time_zone')
+    s.value = val
+    s.save
+  end
+  
+  def self.time_zone
+    Setting.find_by_name('time_zone').value rescue "Pacific Time (US & Canada)"
+  end
+    
       
   def self.public_display?
     Setting.find_by_name('public_display_score').value == 'true' rescue false
@@ -49,12 +60,6 @@ class Setting < ActiveRecord::Base
     s = Setting.find_or_create_by_name('confirmation_threshold')
     s.value = val
     s.save
-  end
-  
-  # Get the Time Zone or Default to PST
-  def self.time_zone
-    Setting.find_by_name('time_zone').value.to_i rescue -28800
-  end
-    
+  end    
     
 end

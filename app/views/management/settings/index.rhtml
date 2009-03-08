@@ -45,6 +45,14 @@
 			</tr>
 			<tr>
 				<td>
+					Time Zone:
+				</td>
+				<td>
+					<%= select :setting, :time_zone, TimeZone.us_zones.map { |tz| [ tz.to_s, tz.name ] } %>
+				</td>
+			</tr>
+			<tr>
+				<td>
 					&nbsp;
 				</td>
 				<td>

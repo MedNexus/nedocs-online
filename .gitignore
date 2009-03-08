@@ -8,3 +8,4 @@ db/create_sample_data_*
 tmp
 Capfile
 config/deploy.rb
+public/images/minibox/*

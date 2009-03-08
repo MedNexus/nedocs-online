@@ -72,9 +72,20 @@ class Nedoc < ActiveRecord::Base
     File.join(SITE_ROOT, 'public', 'images', self.nedocs_score.to_s + ".gif")
   end
   
+  def score_box_image_file
+    mini_box_dir = File.join(SITE_ROOT, 'public', 'images', 'minibox')
+    FileUtils.mkdir_p mini_box_dir unless File.directory? mini_box_dir
+    File.join(mini_box_dir, self.nedocs_score.to_s + ".png")
+  end
+  
   def image
     self.create_image
     return self.image_file
+  end
+  
+  def score_box_image
+    self.create_score_box_image
+    return self.score_box_image_file
   end
   
   def notify_list(email_only=false)
@@ -102,6 +113,30 @@ class Nedoc < ActiveRecord::Base
       new_image.write(self.image_file)
       return true
     end
+  end
+  
+  def create_score_box_image
+    # if File.exists?(self.score_box_image_file)
+    #  return true
+    # else
+      new_image = Magick::Image.new(150,50) { self.background_color = 'lightgray'}
+      gradient = Magick::Image::read(File.join(SITE_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg'))[0]
+      gradient.resize!(0.20)
+      gradient.rotate!(90)
+      new_image.composite!(gradient, Magick::NorthWestGravity, Magick::OverCompositeOp)
+      
+      text = Magick::Draw.new
+      text.annotate(new_image, 0, 0, 0, 60, "My friend!") {
+          self.gravity = Magick::WestGravity
+          self.pointsize = 16
+          self.stroke = 'transparent'
+          self.fill = '#000000'
+          self.font_weight = Magick::BoldWeight
+          }
+          
+      new_image.write(self.score_box_image_file)
+      return true
+    # end
   end
   
   def level
@@ -134,6 +169,8 @@ class Nedoc < ActiveRecord::Base
   
   def self.graph_recent_data
     # pull up the last years worth of data, or the last 500 points
-    Nedoc.find(:all, :conditions => ["created_at > ?", 12.month.ago], :order => ["created_at DESC"], :limit => 500).collect { |x| "[#{x.created_at.to_i*1000},#{x.nedocs_score}]" }
+    local_time_zone = Setting.time_zone
+    
+    Nedoc.find(:all, :conditions => ["created_at > ?", 12.month.ago], :order => ["created_at DESC"], :limit => 500).collect { |x| "[#{TimeZone.new(local_time_zone).utc_to_local(x.created_at).to_i*1000},#{x.nedocs_score}]" }
   end
 end

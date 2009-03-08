@@ -21,7 +21,8 @@ class Management::ApplicationController < ApplicationController
       csv << labels
       
       nedocs.each do |n|
-        row = [ n.created_at, n.created_at.to_i, n.nedocs_score, n.longest_admit, n.last_patient_wait, n.total_patients_ed, n.number_hospital_beds, n.number_ed_beds, n.total_admits, n.total_respirators, n.user.username ]
+        row = [ gm_to_local(n.created_at).strftime('%a %b %d, %Y') + ' at ' +
+          gm_to_local(n.created_at).strftime('%I:%M%p').downcase, n.created_at.to_i, n.nedocs_score, n.longest_admit, n.last_patient_wait, n.total_patients_ed, n.number_hospital_beds, n.number_ed_beds, n.total_admits, n.total_respirators, n.user.username ]
 
         csv << row
       end
