@@ -151,6 +151,24 @@ class Nedoc < ActiveRecord::Base
     return @@NedocsMessage[self.level] rescue "&nbsp;"
   end
   
+  def custom_message
+    if self.level == 0 then
+      return Setting.level_0_instructions
+    elsif self.level == 1 then
+      return Setting.level_1_instructions
+    elsif self.level == 2 then
+      return Setting.level_2_instructions
+    elsif self.level == 3 then
+      return Setting.level_3_instructions
+    elsif self.level == 4 then
+      return Setting.level_4_instructions
+    elsif self.level == 5 then
+      return Setting.level_5_instructions
+    else
+      return ""
+    end
+  end
+  
   def self.graph_recent
     require 'google_chart'
     nedocs = Nedoc.find(:all, :conditions => ["created_at > ?", 6.months.ago], :order => ["created_at ASC"])

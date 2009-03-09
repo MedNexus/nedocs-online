@@ -13,7 +13,8 @@
 			</td>
 			<td width="200px">
 				<center>
-				<div style="color: #<%= @nedoc.color %>; font-size: 40px; margin-top: 20px"><%= @nedoc.nedocs_score %></div><br/><%= @nedoc.message %>
+				<div style="color: #<%= @nedoc.color %>; font-size: 40px; margin-top: 20px"><%= @nedoc.nedocs_score %></div><br/>
+					<%= [@nedoc.message, @nedoc.custom_message].join("<br/>") %>
 				</center>
 			</td>
 		</tr>

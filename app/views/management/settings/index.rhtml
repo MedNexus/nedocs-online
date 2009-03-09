@@ -52,6 +52,24 @@
 				</td>
 			</tr>
 			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					Hospital Wide Instructions by Level:
+				</td>
+			</tr>
+			<% for i in 0..5 do %>
+			<tr>
+				<td>
+					<%= Nedoc.message(i) %>
+				</td>
+				<td>
+					<%= text_field :setting, "level_#{i}_instructions", {:style => 'width: 220px' } %>
+				</td>
+			</tr>
+			<% end %>
+			<tr>
 				<td>
 					&nbsp;
 				</td>

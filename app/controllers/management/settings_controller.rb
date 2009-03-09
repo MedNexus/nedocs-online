@@ -13,6 +13,13 @@ class Management::SettingsController < Management::ApplicationController
     Setting.time_zone                 = params[:setting][:time_zone]
     session[:time_zone]               = params[:setting][:time_zone]
     
+    Setting.level_0_instructions      = params[:setting][:level_0_instructions]
+    Setting.level_1_instructions      = params[:setting][:level_1_instructions]
+    Setting.level_2_instructions      = params[:setting][:level_2_instructions]
+    Setting.level_3_instructions      = params[:setting][:level_3_instructions]
+    Setting.level_4_instructions      = params[:setting][:level_4_instructions]    
+    Setting.level_5_instructions      = params[:setting][:level_5_instructions]
+     
     flash[:notice] = "Settings Updated"
     redirect_to :controller => "/management/admin"
   end
