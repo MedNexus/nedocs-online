@@ -14,7 +14,8 @@
 			<td width="200px">
 				<center>
 				<div style="color: #<%= @nedoc.color %>; font-size: 40px; margin-top: 20px"><%= @nedoc.nedocs_score %></div><br/>
-					<%= [@nedoc.message, @nedoc.custom_message].join("<br/>") %>
+					<%= @nedoc.message %>
+					<%= "<br/>" + @nedoc.custom_message if session[:user_authenticated] %>
 				</center>
 			</td>
 		</tr>
