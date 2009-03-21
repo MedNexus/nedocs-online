@@ -13,10 +13,10 @@
 <script id="source" language="javascript" type="text/javascript">
 $(function () {
 		var d = [<%= Nedoc.graph_recent_data.join(",") -%>];
-    $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y" } });
+    $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y" }, lines: {show: false}, points: {show: true} });
 
     $("#last500").click(function () {
-        $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y" } });
+        $.plot($("#placeholder"), [d], { xaxis: { mode: "time", timeformat: "%m/%d/%y" }, lines: {show: false}, points: {show: true} });
     });
 
     $("#lastmonth").click(function () {
@@ -29,7 +29,7 @@ $(function () {
 						timeformat: "%m/%d/%y",
             min: last_month.getTime(),
             max: today.getTime()
-        } });
+        }, lines: {show: false}, points: {show: true} });
     });
 
     $("#last24").click(function () {
@@ -43,7 +43,7 @@ $(function () {
 						minTickSize: [1, "hour"],
             min: last_24.getTime(),
             max: today.getTime()
-        } });
+        }, lines: {show: false}, points: {show: true} });
     });
 
     $("#lastweek").click(function () {
@@ -56,7 +56,7 @@ $(function () {
             minTickSize: [1, "day"],
             min: last_week.getTime(),
             max: today.getTime()
-        } });
+        }, lines: {show: false}, points: {show: true} });
     });
 });
 </script>
