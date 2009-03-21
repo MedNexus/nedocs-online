@@ -1,0 +1,14 @@
+<table>
+	<tr>
+		<td width="175">Date:</td>
+		<td width="75">Min</td>
+		<td width="75">Max</td>
+	</tr>
+<% @results.each do |result|%>
+<tr>
+	<td><%= result[0] %></td>
+	<td><%= result[1] %></td>
+	<td><%= result[2] %></td>
+</tr>
+<% end %>
+</table>

@@ -1,0 +1,19 @@
+<table>
+	<tr valign="top">
+		<td>
+			<%= render :partial => 'menu' %>
+		</td>
+		<td width="20">
+			&nbsp;
+		</td>
+		<td>
+			<div class='individualCard' id='reportOutputCard' style='width: 430px'>
+			  <div class='cardHeader'><span id='spanReportTitle' style='float: left'>Min & Max Scores for Last <%= @results.size -%> Days</span></div>
+			  <div id='divReportResults' class='cardContent' style='margin: auto; width: 400px;'>
+					<%= render :partial => 'min_and_max_scores' %>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+

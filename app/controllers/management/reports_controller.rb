@@ -28,6 +28,11 @@ class Management::ReportsController < Management::ApplicationController
               :type => "text/csv"
   end
   
+  def min_and_max_scores
+    nedocs = Nedoc.find_by_sql('select MIN(nedocs_score) as min, MAX(nedocs_score) as max, date(created_at) as created_date from nedocs GROUP BY created_date ORDER BY created_at DESC LIMIT 100;')
+    @results = nedocs.collect {|x| [x.created_date, x.min, x.max] }
+  end
+  
   def historic_graph
     render :action => 'index'
   end

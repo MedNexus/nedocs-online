@@ -9,6 +9,9 @@
 		<%= link_to_unless_current "Scores by Time of Day", :action => 'scores_time_day' %><br/>
 		Display a scatter plot of all the scores categorized by time of day<br/><br/>
 		
+		<%= link_to_unless_current "Minimum and Maximum Scores", :action => 'min_and_max_scores' %><br/>
+		Display a table of the minimum and maximum scores for each day<br/><br/>
+		
 		<%= link_to_unless_current "Download Scores", :action => "download_csv" %><br/>
 		Download the entire NEDOCS data set as a CSV file which can be opened in Excel<br/><br/>
 		
