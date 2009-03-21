@@ -1,0 +1,19 @@
+<div id='placeholder' style="width:400px;height:300px;"></div>
+<br/>
+<script language="javascript" type="text/javascript" src="/javascripts/excanvas.pack.js"></script>
+<script language="javascript" type="text/javascript" src="/javascripts/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="/javascripts/jquery.flot.pack.js"></script>
+
+<script id="source" language="javascript" type="text/javascript">
+
+
+$(function () {
+			var d = [<%= Nedoc.graph_by_time_of_day.join(",") -%>];
+			var options = {
+				lines: { show: false},
+				points: {show: true},
+				xaxis: {mode: "time", timeformat: "%H:%M"}
+			};
+	    $.plot($("#placeholder"), [d], options);
+});
+</script>

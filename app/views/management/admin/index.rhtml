@@ -10,7 +10,7 @@
 						<li><%= link_to "Manage Users", :controller => "/management/users" %></li>
 						<li><%= link_to "Change Settings", :controller => "/management/settings" %></li>
 						<li><%= link_to "Email Templates", :controller => "/management/email_templates" %></li>
-						<li><%= link_to "Download Scores", :controller => "/management/admin", :action => "download_csv" if scores_avail%></li>
+						<li><%= link_to "Reports", :controller => "/management/reports" if scores_avail%></li>
 						<li><%= link_to "Back to Score Screen", :controller => "/nedocs" %></li>
 					</ul>
 				</div>
@@ -25,7 +25,7 @@
 			  <div class='cardHeader'><span style='float: left'>Recent Scores</span></div>
 			  <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
 					<% # <img src="Nedoc.graph_recent" />%>
-					<%= render :partial => 'historic_graph' %>
+					<%= render :partial => '/management/reports/historic_graph' %>
 				</div>
 			</div>
 			<% end%>

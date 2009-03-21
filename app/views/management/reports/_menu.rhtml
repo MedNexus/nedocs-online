@@ -1,0 +1,17 @@
+<div class='individualCard' id='formCard' style='width: 370px'>
+  <div class='cardHeader'><span style='float: left'>Reports</span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 340px;'>
+		<%= flash_message %>
+		
+		<%= link_to_unless_current "Score Graph", :action => "historic_graph" %><br/>
+		Display graphs of the recent NEDOCS scores over time<br/><br/>
+		
+		<%= link_to_unless_current "Scores by Time of Day", :action => 'scores_time_day' %><br/>
+		Display a scatter plot of all the scores categorized by time of day<br/><br/>
+		
+		<%= link_to_unless_current "Download Scores", :action => "download_csv" %><br/>
+		Download the entire NEDOCS data set as a CSV file which can be opened in Excel<br/><br/>
+		
+		<%= link_to "Back to Score Screen", :controller => "/nedocs" %> : <%= link_to "Back to Admin Menu", :controller => "/management/admin" %>
+	</div>
+</div>
