@@ -8,11 +8,19 @@
 
 
 $(function () {
+			var min_day = new Date();
+			var max_day = new Date();
+			min_day.setHours(0);
+			min_day.setMinutes(0);
+			max_day.setHours(23);
+			max_day.setHours(59);
+			
 			var d = [<%= Nedoc.graph_by_time_of_day.join(",") -%>];
 			var options = {
 				lines: { show: false},
 				points: {show: true},
-				xaxis: {mode: "time", timeformat: "%H:%M"}
+				xaxis: {mode: "time", timeformat: "%H:%M" },
+				yaxis: {min: 0, max: 200}
 			};
 	    $.plot($("#placeholder"), [d], options);
 });

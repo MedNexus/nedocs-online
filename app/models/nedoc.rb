@@ -194,7 +194,7 @@ class Nedoc < ActiveRecord::Base
   
   def self.graph_by_time_of_day
     local_time_zone = Setting.time_zone
-    Nedoc.find_by_sql("select *, TIME(created_at) as created_time from nedocs WHERE number_ed_beds < 999 ORDER BY created_at DESC LIMIT 100").collect { |x| "[#{TimeZone.new(local_time_zone).utc_to_local(Time.parse(x.created_time)).to_i*1000},#{x.nedocs_score}]"}
+    Nedoc.find_by_sql("select *, TIME(created_at) as created_time from nedocs WHERE number_ed_beds < 999 ORDER BY created_time DESC LIMIT 100").collect { |x| "[#{TimeZone.new(local_time_zone).utc_to_local(Time.parse(x.created_time)).to_i*1000},#{x.nedocs_score}]"}
     
   end
   
