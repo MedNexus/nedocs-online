@@ -39,10 +39,10 @@ print `#{mysql} -e 'create database #{db}'`
 # if we want to make the test database
 if hospital == "test"
   RAILS_HOSPITAL="test"
-  print `rake _0.7.3_ db:test:prepare`
+  print `rake _0.7.2_ db:test:prepare`
 else
   # run migrations
-  print `rake _0.7.3_ db:migrate RAILS_HOSPITAL=#{hospital}`
+  print `rake _0.7.2_ db:migrate RAILS_HOSPITAL=#{hospital}`
 end
 
 # for dev, create sample data
