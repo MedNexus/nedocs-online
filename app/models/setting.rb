@@ -18,7 +18,7 @@ class Setting < ActiveRecord::Base
   end
   
   def self.time_zone
-    Setting.find_by_name('time_zone').value || "Pacific Time (US & Canada)"
+    Setting.find_by_name('time_zone').value || "Pacific Time (US & Canada)" rescue "Pacific Time (US & Canada)"
   end
     
       
