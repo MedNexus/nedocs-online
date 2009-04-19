@@ -54,7 +54,14 @@ class Management::UsersController < Management::ApplicationController
   
   def destroy
     @item = User.find_by_id(params[:id])
-    @notice = "User #{@item.username.upcase} Deleted"
+  
+    destroy = false
+    if User.count(:all, :conditions => ["active = 1 and is_superuser = 1"]) <= 1
+      @notice = "Cannot delete the last admin user"
+    elsif
+      @notice = "User #{@item.username.upcase} Deleted"
+      destroy = @item.destroy
+    end
 
     render :update do |page|
       page.replace_html "divNotification", @notice if @item.destroy

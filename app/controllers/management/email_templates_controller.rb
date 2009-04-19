@@ -51,12 +51,22 @@ class Management::EmailTemplatesController < Management::ApplicationController
   
   def destroy
     @item = EmailTemplate.find_by_id(params[:id])
-    @notice = "Template #{@item.name.upcase} Deleted"
+    destroy = false
+    
+    if @item.id == 1
+      @notice = "Cannot delete the #{@item.name.upcase}"
+    elsif EmailTemplate.count <= 1
+      @notice = "Cannot delete the last email template"
+    elsif
+      destroy = @item.destroy
+      @notice = "Template #{@item.name.upcase} Deleted" if destroy
+    end
 
     render :update do |page|
-      page.replace_html "divNotification", @notice if @item.destroy
+      page.replace_html "divNotification", @notice
       page.replace_html "listView", :partial => "template_list"
     end
+    
   end
   
 end

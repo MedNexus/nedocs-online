@@ -13,6 +13,16 @@ class User < ActiveRecord::Base
   has_one :email_template
   belongs_to :email_template
   
+  # check if user is last active admin user
+  def before_destory
+    if User.count(:all, :conditions => ["is_superuser = 1 and active = 1"]) <= 1
+      errors.add_to_base "Cannot delete #{self.username.upcase} because it is the last admin user"
+      return false
+    else
+      return true
+    end
+  end
+  
   def name ; [self.first_name, self.last_name].compact.join(" ") ; end
   
   SaltLength = 16 # :nodoc:
