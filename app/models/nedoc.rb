@@ -23,10 +23,14 @@ class Nedoc < ActiveRecord::Base
     
     if self.save
       return self.nedocs_score if self.notify_list(true).size <= 0
-      
+          
       # attempt to deliver email scores
       begin
-        Email.deliver_score_update(self)
+        EmailTemplate.find(:all).each do |template|
+          users = self.notify_list.find_all {|x| x.email_template_id == template.id }
+          addresses = users.collect { |x| x.notify_address }.compact
+          Email.deliver_score_update(self, template, addresses) if addresses.size > 0
+        end
       rescue Exception => e
         logger.debug "Exception: #{e}"
         log_error(e)

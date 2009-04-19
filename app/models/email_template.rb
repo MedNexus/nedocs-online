@@ -16,4 +16,7 @@ class EmailTemplate < ActiveRecord::Base
     EmailTemplate.find(:all, :conditions => ["user_id is null"], :order => ["name"])
   end
   
+  def content(level)
+    return self["content_" + level.to_s]
+  end
 end
