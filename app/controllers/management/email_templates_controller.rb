@@ -57,6 +57,9 @@ class Management::EmailTemplatesController < Management::ApplicationController
       @notice = "Cannot delete the #{@item.name.upcase}"
     elsif EmailTemplate.count <= 1
       @notice = "Cannot delete the last email template"
+    elsif User.count(:all, :conditions => ["active = 1 and email_template_id = #{@item.id}"]) > 0
+      @notice = "Cannot delete the #{@item.name.upcase} template because it is still attached to: " + 
+                User.find(:all, :conditions => ["active = 1 and email_template_id = #{@item.id}"]).collect {|x| x.username.upcase }.join(", ")
     elsif
       destroy = @item.destroy
       @notice = "Template #{@item.name.upcase} Deleted" if destroy
