@@ -1,5 +1,6 @@
 class Management::ReportsController < Management::ApplicationController
   
+  skip_after_filter  :compress_output, :only => [ :download_csv ]  
   
   def index
     # if there are no scores avail, redirect to management screen
