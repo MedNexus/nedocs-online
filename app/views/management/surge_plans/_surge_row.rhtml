@@ -1,0 +1,25 @@
+<%
+
+bgcolor = cycle('#eeeeee', '#ffffff')
+
+%>
+<tr style="background: <%= bgcolor %>;" valign="top">
+	<td>
+		<%= surge_row.range_low %> to <%= surge_row.range_high %>
+	</td>
+	<td>
+		<%= surge_row.display_plan %>
+	</td>
+	<td>
+		<%= link_to_remote image_tag("interface/btn_edit.gif"), :url => {:action => "edit", :id => surge_row.id} %>
+		&nbsp;
+		<%= link_to_remote image_tag("interface/btn_delete.gif"), :url => {:action => "destroy", :id => surge_row.id}, :confirm => "Do you really want to delete #{surge_row.name.upcase}?" %>
+	</td>
+</tr>
+<tr style="background: <%= bgcolor %>;">
+	<td colspan="4">
+		<div id="surge_id_<%= surge_row.id -%>" style="display: none; background: <%= bgcolor%>; margin-left: 20px">
+			&nbsp; 
+		</div>
+	</td>
+</tr>

@@ -1,8 +1,7 @@
-test = Master::Hospital.create(:name => 'Harbor-UCLA',
-                             :code => 'harbor', :key => 'harbor')
-test.hosts.create(:host => 'localhost')
-test.hosts.create(:host => 'harbor.nedocsonline.org')
-test.hosts.create(:host => 'dev.harbor.nedocsonline.org')
+test = Master::Hospital.create(:name => 'Hospital Name',
+                             :code => 'demo', :key => 'demo')
+test.hosts.create(:host => 'demo')
+test.hosts.create(:host => 'demo.nedocsonline.org')
 
 # demo = Master::Hospital.create(:name => 'Demo Studio',
 #                              :code => 'demo', :key => 'demo')

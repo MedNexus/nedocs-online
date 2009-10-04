@@ -19,7 +19,7 @@ else
   scores_updated = 0
   scores.each do |n|
     old_score = n.nedocs_score
-    new_score = n.calc_score
+    new_score = give
     if new_score != old_score
       print "Updating Score for #{n.created_at} from #{old_score} to #{new_score}\n"
     

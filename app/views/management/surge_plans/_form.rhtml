@@ -1,0 +1,56 @@
+<% if @item.new_record?
+  @url = {:action => "new" }
+  @str = "ADD"
+  @save = "Add Surge Plan"
+else
+  @url = {:action => "update", :id => @item.id }
+  @str = "EDIT"
+  @save = "Edit Surge Plan"
+end -%>
+
+<%= flash_message %>
+
+<%= form_remote_tag :url => @url,
+                    :html => { :id => 'mainForm' }, 
+                    :loading => "Form.disable('mainForm')" -%>
+                    
+<table>
+    <tr>
+        <td colspan="2">Plan Name:</td>
+		</tr>
+		<tr>
+			<td colspan="2"><%= text_field :item, :name, {:style => 'width: 255px'} %></td>
+		</tr>
+		
+		
+    <tr colspan="2">
+        <td>Score Range:</td>
+	</tr>
+	<tr colspan="2">
+		<td><%= text_field :item, :range_low, {:style => 'width: 40px' } %>
+			&nbsp; to &nbsp; 
+			<%= text_field :item, :range_high, {:style => 'width: 40px '} %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">Plan:</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2">
+			<%= text_area :item, :plan, :rows => "5", :style => 'width: 255px' %>
+		</td>
+	</tr>	
+	<tr>
+		<td colspan="2">
+			<%= submit_tag @save, :class => "button" %>
+			<%= link_to_function "cancel", "new Effect.toggle('surge_id_#{@item.id}', 'blind', { duration: 0.25 });" unless @item.new_record? %>
+			</td>
+	</tr>
+</table>
+            
+            
+            
+<% end_form_tag -%>
+
+<%= javascript_tag "Form.enable('mainForm');" %>

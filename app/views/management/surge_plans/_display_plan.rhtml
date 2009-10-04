@@ -1,0 +1,13 @@
+<% @nedoc ||= Nedoc.latest %>
+<% plans = SurgePlan.display_all_plans(@nedoc) %>
+<% unless plans.nil? %>
+
+<div class='individualCard' id='graphCard' style='width: 350px'>
+  <div class='cardHeader'><span style='float: left; color: red'>Surge Plan in Effect</span></div>
+  <div id='divForm' class='cardContent' style='margin: auto; width: 320px;'>
+	<%= plans %>
+  </div>
+  </div>
+</div>
+
+<% end %>
