@@ -24,7 +24,9 @@ class SurgePlan < ActiveRecord::Base
     return str
   end
   
-  def display_plan
+  def display_plan(force_without_formatting = false)
+    return name + "\n" + plan if force_without_formatting
+    
     if auto_format == 1
       # auto format the surge plan
       str = "<b>#{name}</b><ol><li>" + plan.split("\n").join("</li><li>") + "</li></ol>"
