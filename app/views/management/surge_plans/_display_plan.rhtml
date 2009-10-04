@@ -3,8 +3,9 @@
 <% unless plans.nil? %>
 
 <div class='individualCard' id='graphCard' style='width: 350px'>
-  <div class='cardHeader'><span style='float: left; color: red'>Surge Plan in Effect</span></div>
-  <div id='divForm' class='cardContent' style='margin: auto; width: 320px;'>
+  <div class='cardHeader'><span style='float: left; color: red'>Surge Plan in Effect</span>
+	<span style='float: right'><%= link_to_function "View Plan", visual_effect(:toggle_blind, :divSurgePlanContent, :duration => 0.5) %></span></div>
+  <div id='divSurgePlanContent' class='cardContent' style='margin: auto; width: 320px; display: none'>
 	<%= plans %>
   </div>
   </div>
