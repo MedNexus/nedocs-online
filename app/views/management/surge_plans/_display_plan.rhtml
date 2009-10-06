@@ -1,12 +1,17 @@
 <% @nedoc ||= Nedoc.latest %>
-<% plans = SurgePlan.display_all_plans(@nedoc) %>
-<% unless plans.nil? %>
+<% plans = SurgePlan.find_plans_by_score(@nedoc.nedocs_score) %>
+<% unless plans.size == 0 %>
 
 <div class='individualCard' id='graphCard' style='width: 350px'>
-  <div class='cardHeader'><span style='float: left; color: red'>Surge Plan in Effect</span>
-	<span style='float: right'><%= link_to_function "View Plan", visual_effect(:toggle_blind, :divSurgePlanContent, :duration => 0.5) %></span></div>
-  <div id='divSurgePlanContent' class='cardContent' style='margin: auto; width: 320px; display: none'>
-	<%= plans %>
+  <div class='cardHeader'><span style='float: center; color: red'>Surge Plan in Effect</span>
+  </div>
+  <div id='divSurgePlanContent' class='cardContent' style='margin: auto; width: 320px'>
+	<% plans.each do |plan| %>
+		<%= link_to_function plan.name, visual_effect(:toggle_blind, "divPlanContent-#{plan.id}", :duration => 0.5 ) %><br/>
+		<div id="divPlanContent-<%= plan.id -%>" style="display: none">
+			<%= plan.display_plan %>
+		</div>
+	<% end %>
   </div>
   </div>
 </div>

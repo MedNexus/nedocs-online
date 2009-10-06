@@ -29,7 +29,8 @@ class SurgePlan < ActiveRecord::Base
     
     if auto_format == 1
       # auto format the surge plan
-      str = "<b>#{name}</b><ol><li>" + plan.split("\n").join("</li><li>") + "</li></ol>"
+      str = RedCloth.new(plan).to_html
+      # str = "<b>#{name}</b><ol><li>" + plan.split("\n").join("</li><li>") + "</li></ol>"
     else
       return name + "\n" + plan
     end

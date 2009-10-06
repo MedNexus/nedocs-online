@@ -2,10 +2,12 @@
   @url = {:action => "new" }
   @str = "ADD"
   @save = "Add Surge Plan"
+  width = '255px'
 else
   @url = {:action => "update", :id => @item.id }
   @str = "EDIT"
   @save = "Edit Surge Plan"
+  width = '465px'
 end -%>
 
 <%= flash_message %>
@@ -38,7 +40,9 @@ end -%>
 	
 	<tr>
 		<td colspan="2">
-			<%= text_area :item, :plan, :rows => "5", :style => 'width: 255px' %>
+			<% %>
+			<%= textile_editor 'item', 'plan', :style => "width: #{width}" -%>
+			<% # text_area :item, :plan, :rows => "5", :style => 'width: 255px' %>
 		</td>
 	</tr>	
 	<tr>
@@ -50,7 +54,7 @@ end -%>
 </table>
             
             
-            
+<%= textile_editor_initialize -%>
 <% end_form_tag -%>
 
 <%= javascript_tag "Form.enable('mainForm');" %>
