@@ -9,5 +9,12 @@ xml.NedocScore {
     xml.custom_message(@nedoc.custom_message)
     xml.color(@nedoc.color)
     xml.score_bar_url(url_for(:controller => "nedocs", :action => "graph", :id => @nedoc.id))
-    xml.surge_plan(SurgePlan.display_all_plans(@nedoc))
+    xml.surge_plans{
+      @plans.each do |p|
+        xml.surge_plan{
+          xml.name(p.name)
+          xml.content(p.display_plan)
+        }
+      end
+    }
 }

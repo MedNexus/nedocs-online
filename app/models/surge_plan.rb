@@ -1,4 +1,5 @@
 class SurgePlan < ActiveRecord::Base
+  # require 'RedCloth' 
   
   validates_presence_of [ :name, :plan ], :message => 'is required'
   validates_inclusion_of [:range_low, :range_high], :in => 0..200, :message => 'must be between 0 and 200'
