@@ -1,6 +1,7 @@
 # ignore logs and pids
 *.log
 *.pid
+log/*
 public/images/*.png
 public/images/*.gif
 public/system/maintenance*
