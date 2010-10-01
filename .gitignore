@@ -1,4 +1,5 @@
 # ignore logs and pids
+
 *.log
 *.pid
 public/images/*.png
