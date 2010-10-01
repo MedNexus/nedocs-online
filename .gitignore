@@ -1,4 +1,5 @@
 # ignore logs and pids
+# finally?
 
 *.log
 *.pid
