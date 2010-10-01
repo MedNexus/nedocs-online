@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/Applications/Locomotive2/Bundles/rmagickRailsMar2007_i386.locobundle/framework/bin/ruby
 #
 # You may specify the path to the FastCGI crash log (a log of unhandled
 # exceptions which forced the FastCGI instance to exit, great for debugging)
@@ -18,9 +18,7 @@
 #   # Custom log path, normal GC behavior.
 #   RailsFCGIHandler.process! '/var/log/myapp_fcgi_crash.log'
 #
-ENV['RAILS_SITE'] = File.basename(File.expand_path(File.join(File.dirname(__FILE__), '..')))
-
-require File.dirname(__FILE__) + "/../../../config/environment"
+require File.dirname(__FILE__) + "/../config/environment"
 require 'fcgi_handler'
 
 RailsFCGIHandler.process!

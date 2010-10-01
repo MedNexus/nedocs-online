@@ -21,5 +21,5 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   
   # Static content (help files, etc.) or 404
-  map.connect '*content_path',                    :controller => 'cms/content', :action => 'show'
+  # map.connect '*content_path',                    :controller => 'cms/content', :action => 'show'
 end

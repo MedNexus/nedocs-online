@@ -1,5 +1,5 @@
-# This site requires login, so all robots should go away
-# If you want info on this application visit http://www.nedocsonline.org
-
-User-agent: *
-Disallow: /
+# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
+#
+# To ban all spiders from the entire site uncomment the next two lines:
+# User-Agent: *
+# Disallow: /
