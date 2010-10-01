@@ -1,4 +1,6 @@
 # ignore logs and pids
+# finally?
+
 *.log
 *.pid
 public/images/*.png
@@ -6,7 +8,6 @@ public/images/*.gif
 public/system/maintenance*
 db/create_sample_data_*
 tmp
-Capfile
 config/database.yml
 config/deploy.rb
 config/database.yml
