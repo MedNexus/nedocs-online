@@ -7,7 +7,6 @@ public/system/maintenance*
 db/create_sample_data_*
 tmp
 Capfile
-config/database.yml
 config/deploy.rb
 config/database.yml
 public/images/minibox/*
