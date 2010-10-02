@@ -1,4 +1,4 @@
-class SurgePlans < HospitalMigration
+class SurgePlans < ActiveRecord::Migration
   
   def self.up
     create_table :surge_plans do |t|

@@ -24,7 +24,27 @@ ActiveRecord::Schema.define(:version => 13) do
     t.datetime "updated_at"
   end
 
-  add_index "email_templates", ["user_id"], :name => "user_id"
+  create_table "hospital_hosts", :force => true do |t|
+    t.integer "hospital_id", :null => false
+    t.string  "host",        :null => false
+  end
+
+  add_index "hospital_hosts", ["host"], :name => "UN_hospital_hosts_host", :unique => true
+
+  create_table "hospitals", :force => true do |t|
+    t.string   "name",                       :null => false
+    t.string   "code",                       :null => false
+    t.string   "key",                        :null => false
+    t.integer  "active",      :default => 1, :null => false
+    t.integer  "require_ssl", :default => 1, :null => false
+    t.datetime "created_on"
+    t.integer  "deleted",     :default => 0, :null => false
+    t.datetime "deleted_on"
+  end
+
+  add_index "hospitals", ["code"], :name => "UN_hospitals_code", :unique => true
+  add_index "hospitals", ["deleted"], :name => "index_hospitals_on_deleted"
+  add_index "hospitals", ["key"], :name => "UN_hospitals_key", :unique => true
 
   create_table "nedocs", :force => true do |t|
     t.integer  "user_id"
@@ -40,7 +60,13 @@ ActiveRecord::Schema.define(:version => 13) do
     t.datetime "updated_at"
   end
 
-  add_index "nedocs", ["user_id"], :name => "user_id"
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id"
+    t.text     "data"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
 
   create_table "settings", :force => true do |t|
     t.string   "name",       :null => false
@@ -64,9 +90,6 @@ ActiveRecord::Schema.define(:version => 13) do
     t.integer  "user_group_id", :null => false
     t.datetime "created_on"
   end
-
-  add_index "user_group_memberships", ["user_group_id"], :name => "user_group_id"
-  add_index "user_group_memberships", ["user_id"], :name => "user_id"
 
   create_table "user_groups", :force => true do |t|
     t.string   "name",        :limit => 50,                :null => false

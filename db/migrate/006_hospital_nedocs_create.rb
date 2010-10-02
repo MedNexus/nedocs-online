@@ -1,4 +1,4 @@
-class HospitalNedocsCreate < HospitalMigration
+class HospitalNedocsCreate < ActiveRecord::Migration
   def self.up
     create_table :nedocs do |t|
       t.column  :user_id, :int

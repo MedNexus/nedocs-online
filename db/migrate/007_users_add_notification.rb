@@ -1,4 +1,4 @@
-class UsersAddNotification < HospitalMigration
+class UsersAddNotification < ActiveRecord::Migration
   def self.up
     add_column :users, :send_notifications, :integer, :default => 1, :null => false
     add_column :users, :notify_threshold, :integer, :default => 200, :null => false

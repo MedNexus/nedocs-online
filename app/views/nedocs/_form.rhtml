@@ -3,9 +3,9 @@
   <div id='divForm' class='cardContent' style='margin: auto; width: 450px;'>
 <%= flash_message %>
 
-<%= form_remote_tag :url => {:controller => 'nedocs', :action => 'new'},
+<% form_remote_tag :url => {:controller => 'nedocs', :action => 'new'},
                     :html => { :id => 'mainForm', :onsubmit => "teardownTextFieldHints();"},
-                    :loading => "Form.disable('mainForm')" -%>
+                    :loading => "Form.disable('mainForm')" do -%>
 
 <table>
     <tr>
@@ -45,7 +45,7 @@
 </table>
 
 
-<% end_form_tag -%>
+<% end -%>
 
 <script type="text/javascript">
 //<![CDATA[

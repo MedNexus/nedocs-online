@@ -3,7 +3,7 @@
   <div id='divForm' class='cardContent' style='margin: auto; width: 400px;'>
 <%= flash_message %>
 
-<%= form_tag :controller => 'management/user', :action => 'process_login' -%>
+<% form_tag :controller => 'management/user', :action => 'process_login' do -%>
 
 <table>
     <tr>
@@ -20,7 +20,7 @@
     </tr>
 </table>
 
-<% end_form_tag -%>
+<% end -%>
 
 </div>
 </div>

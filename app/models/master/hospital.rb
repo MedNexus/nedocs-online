@@ -1,6 +1,4 @@
 class Master::Hospital < ActiveRecord::Base
-  connect_to_master
-  acts_as_soft_deletable
   
   has_many :hosts, :class_name => 'HospitalHost', :foreign_key => 'hospital_id'
   

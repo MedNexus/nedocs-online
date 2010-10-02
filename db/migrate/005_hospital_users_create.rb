@@ -1,4 +1,4 @@
-class HospitalUsersCreate < HospitalMigration
+class HospitalUsersCreate < ActiveRecord::Migration
   def self.up
     # users will hold employees for the studio
     create_table 'users' do |t|

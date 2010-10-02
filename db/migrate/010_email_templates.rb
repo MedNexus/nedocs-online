@@ -1,4 +1,4 @@
-class EmailTemplates < HospitalMigration
+class EmailTemplates < ActiveRecord::Migration
 
   def self.up
     create_table 'email_templates' do |t|

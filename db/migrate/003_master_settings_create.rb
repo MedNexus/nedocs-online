@@ -1,4 +1,4 @@
-class MasterSettingsCreate < MasterMigration
+class MasterSettingsCreate < ActiveRecord::Migration
   def self.up
     create_table "settings" do |t|
       t.column "name",              :string, :null => false

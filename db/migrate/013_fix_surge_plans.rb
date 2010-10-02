@@ -1,4 +1,4 @@
-class FixSurgePlans < HospitalMigration
+class FixSurgePlans < ActiveRecord::Migration
   
   def self.up
     execute 'alter table surge_plans modify plan varchar(65536)'

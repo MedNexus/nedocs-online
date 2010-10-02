@@ -1,4 +1,4 @@
-class DropDynamicFields < HospitalMigration
+class DropDynamicFields < ActiveRecord::Migration
   
   def self.up
     remove_column :users, :dynamic_fields

@@ -1,4 +1,4 @@
-class MasterHospitalsCreate < MasterMigration
+class MasterHospitalsCreate < ActiveRecord::Migration
   def self.up
     create_table 'hospitals' do |t|
       t.column 'name',              :string, :null => false

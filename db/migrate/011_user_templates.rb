@@ -1,4 +1,4 @@
-class UserTemplates < HospitalMigration
+class UserTemplates < ActiveRecord::Migration
   
   def self.up
     # add email_template_id to users table
