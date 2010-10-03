@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/bbrails/!svn/ver/808/trunk/vendor/plugins/output_compression/test
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/bbrails/!svn/ver/808/trunk/vendor/plugins/output_compression/test/test_helper.rb
+END
+output_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/bbrails/!svn/ver/808/trunk/vendor/plugins/output_compression/test/output_test.rb
+END
+test_controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/bbrails/!svn/ver/808/trunk/vendor/plugins/output_compression/test/test_controller.rb
+END

@@ -1,0 +1,106 @@
+8
+
+dir
+1457
+https://dev.biggerbird.com:1443/bbrails/trunk/vendor/plugins/output_compression
+https://dev.biggerbird.com:1443/bbrails
+
+
+
+2008-04-24T00:40:47.738492Z
+1330
+aaron
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+380e0afa-9f0f-0410-a653-823cc33d3015
+
+test
+dir
+
+rakefile
+file
+
+
+
+
+2008-11-26T07:20:05.000000Z
+a3a4a913d0f034662377e0b1422dc0b7
+2006-09-27T02:18:11.820021Z
+807
+aaron
+
+init.rb
+file
+
+
+
+
+2008-11-26T07:20:05.000000Z
+a259cac84859acb5e8dd6e212843ac41
+2006-09-27T02:18:11.820021Z
+807
+aaron
+
+lib
+dir
+
+CHANGELOG
+file
+
+
+
+
+2008-11-26T07:20:05.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2006-09-27T02:18:11.820021Z
+807
+aaron
+
+MIT-LICENSE
+file
+
+
+
+
+2008-11-26T07:20:05.000000Z
+fe835e5b6193ce89558c9a11da9467cd
+2006-09-27T02:18:11.820021Z
+807
+aaron
+
+about.yml
+file
+
+
+
+
+2008-11-26T07:20:05.000000Z
+b80c6f9a89ae0a9556fe2317df21eb73
+2006-09-27T02:18:11.820021Z
+807
+aaron
+
+README
+file
+
+
+
+
+2008-11-26T07:20:05.000000Z
+961f9e896d3a230a1642cf93ea24f772
+2006-09-27T02:18:11.820021Z
+807
+aaron
+
