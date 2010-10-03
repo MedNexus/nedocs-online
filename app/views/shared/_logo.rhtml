@@ -1,7 +1,1 @@
-<%- if session[:hospital_logo_file] -%>
-  <%= image_tag(File.join("logos", session[:hospital_key] + ".gif")) -%>
-<%- elsif File.exists?(@hospital.logo_file) -%>
-  <%= image_tag(File.join("logos", session[:hospital_key] + ".gif")) -%>
-<%- else -%>
-  <span id="studioHeader"><%= session[:hospital_name] %></span>
-<%- end -%>
+<span id="studioHeader">Harbor-UCLA</span>

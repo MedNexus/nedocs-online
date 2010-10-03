@@ -5,38 +5,13 @@ class ActionController::Base
   def connect_to_hospital_database
     @hospital = nil
     
-    # request is first priority
-    if params[:hospital_code]
-      if session[:hospital_key] && session[:hospital_key] != params[:hospital_code]
-        reset_session
-      end
-      @hospital = Master::Hospital.find_by_code(params[:hospital_code])
-    end
-    # try hostname if we don't already have a key in the session
-    unless session[:hospital_key]
-      if !@hospital && (request.host rescue '') =~ /^([-\w\d]+)/
-        @hospital = Master::Hospital.find_by_code($1)
-      end
-      if !@hospital
-        @hospital = Master::Hospital.find_by_host request.host
-      end
-    end
+    hospital_config_file = RAILS_ROOT + "/config/hospital.yml"
+    hospital = YAML::parse(File.open(hospital_config_file))
+    :session['hospital_name'] = hospital['hospital_name'].value
+    :session['hospital_logo_file'] = hospital['hospital_logo_file'].value
     
-    if @hospital
-      if session[:hospital_key] != @hospital.key
-        session[:hospital_key] = @hospital.key
-        session[:hospital_name] = @hospital.name
-        session[:hospital_code] = @hospital.code
-        
-        session[:hospital_logo_file] = @hospital.logo_file if File.exists?(@hospital.logo_file)
-      end
-    end
-    
-    if session[:hospital_key]
-      @hospital ||= Master::Hospital.find_by_code(session[:hospital_key])
-      ActiveRecord::Base.connect_to_hospital session[:hospital_key]
-      return true
-    end
+    @hospital = Master::Hospital.new
+    @hospital.logo_file = hospital['hospital_logo_file'].value
     
     # if we don't issue an establish_connection by now, return an error
     render :text => "Hospital not found, please make sure the URL you entered is correct.", :status => 404 and return false
