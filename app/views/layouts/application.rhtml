@@ -3,7 +3,7 @@
   <head>
     <title><%= session[:hospital_name] || '' %> NEDOCS Hospital Overcrowding Score</title>
     <%= javascript_include_tag :defaults %>
-    <% for js in [].concat(@javascripts || []).compact -%>
+    <% for js in ['imagine.js'].concat(@javascripts || []).compact -%>
       <%= javascript_include_tag js %>
     <% end -%>		
     <% for stylesheet in [ 'default', 'nedocs' ].concat(@stylesheets || []).compact -%>
