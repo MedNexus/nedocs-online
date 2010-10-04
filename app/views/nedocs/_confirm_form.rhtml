@@ -6,9 +6,9 @@
 If you have made a mistake please click the cancel link to start over.</span>
 <br/><br/>
 
-<%= form_remote_tag :url => {:controller => 'nedocs', :action => 'new'},
+<% form_remote_tag :url => {:controller => 'nedocs', :action => 'new'},
                     :html => { :id => 'mainForm'},
-                    :loading => "Form.disable('mainForm')" -%>
+                    :loading => "Form.disable('mainForm')" do -%>
 
 
 <table>
@@ -50,7 +50,7 @@ If you have made a mistake please click the cancel link to start over.</span>
 <br/><br/>
 <%= flash_message %>
 
-<% end_form_tag -%>
+<% end -%>
 
 
 </div>
