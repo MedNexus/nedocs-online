@@ -22,6 +22,14 @@ class HospitalUsersCreate < ActiveRecord::Migration
     end
     add_index 'users', [ 'deleted' ]
     
+    u = User.new
+    u.username = 'admin'
+    u.password = 'admin'
+    u.first_name = 'Administrative'
+    u.last_name = 'User'
+    u.is_superuser = 1
+    u.save
+    
     # not sure if we'll use this, but it could allow
     # managers to manager their employees as a group
     # dictating en mass who has access to what

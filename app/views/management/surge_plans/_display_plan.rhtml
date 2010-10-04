@@ -1,5 +1,10 @@
 <% @nedoc ||= Nedoc.latest %>
-<% plans = SurgePlan.find_plans_by_score(@nedoc.nedocs_score) %>
+
+<%
+if @nedoc then
+	plans = SurgePlan.find_plans_by_score(@nedoc.nedocs_score) 
+
+-%>
 <% unless plans.size == 0 %>
 
 <div class='individualCard' id='graphCard' style='width: 350px'>
@@ -16,4 +21,6 @@
   </div>
 </div>
 
-<% end %>
+<% end 
+end
+-%>
