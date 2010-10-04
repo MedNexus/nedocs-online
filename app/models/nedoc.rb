@@ -1,4 +1,5 @@
 class Nedoc < ActiveRecord::Base
+  require 'RMagick'
   belongs_to :user
 
   # validate numeric for all fields
