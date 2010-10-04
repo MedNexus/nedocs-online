@@ -4,7 +4,7 @@ ENV['RAILS_ENV'] ||= 'development'
 require File.dirname(__FILE__) + '/../config/environment'
 
 # Load Basic Gradient
-grad = File.join(SITE_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg')
+grad = File.join(RAILS_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg')
 im = Magick::Image::read(grad)[0]
 
 new_image = Magick::Image.new(im.columns+20,im.rows) { self.background_color = 'transparent' }

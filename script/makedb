@@ -11,10 +11,10 @@ env = ARGV.shift || ENV['RAILS_ENV'] || 'development'
 
 # leave-aloneables
 RAILS_ROOT = File.join(File.dirname(__FILE__), '..', '..', '..')
-SITE_ROOT = File.join(RAILS_ROOT, 'sites', site)
-print "SITE ROOT: #{SITE_ROOT}\n\n"
+RAILS_ROOT = File.join(RAILS_ROOT, 'sites', site)
+print "SITE ROOT: #{RAILS_ROOT}\n\n"
 
-yml = YAML.load_file(File.join(SITE_ROOT, 'config', 'database.yml'))
+yml = YAML.load_file(File.join(RAILS_ROOT, 'config', 'database.yml'))
 
 print "Hospital: #{hospital}\n\n"
 
@@ -47,5 +47,5 @@ end
 
 # for dev, create sample data
 if env == 'development' && hospital != 'sessions'
-  print `RAILS_HOSPITAL=#{hospital} ruby #{SITE_ROOT}/script/console #{env} < #{SITE_ROOT}/db/create_sample_data_#{hospital}.rb`
+  print `RAILS_HOSPITAL=#{hospital} ruby #{RAILS_ROOT}/script/console #{env} < #{RAILS_ROOT}/db/create_sample_data_#{hospital}.rb`
 end

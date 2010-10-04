@@ -13,7 +13,7 @@ class Management::ApplicationController < ApplicationController
     require 'csv'
     
     datestr = Time.now.strftime("%Y%m%d-%H%M%S")
-    csvname = "#{SITE_ROOT}/tmp/#{datestr}-#{Process.pid}.csv"
+    csvname = "#{RAILS_ROOT}/tmp/#{datestr}-#{Process.pid}.csv"
     
     csvData = File.open(csvname, 'w')
     CSV::Writer.generate(csvData, ',') do |csv|

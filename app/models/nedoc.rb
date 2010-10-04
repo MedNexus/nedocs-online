@@ -73,11 +73,11 @@ class Nedoc < ActiveRecord::Base
   end
   
   def image_file
-    File.join(SITE_ROOT, 'public', 'images', self.nedocs_score.to_s + ".gif")
+    File.join(RAILS_ROOT, 'public', 'images', self.nedocs_score.to_s + ".gif")
   end
   
   def score_box_image_file
-    mini_box_dir = File.join(SITE_ROOT, 'public', 'images', 'minibox')
+    mini_box_dir = File.join(RAILS_ROOT, 'public', 'images', 'minibox')
     FileUtils.mkdir_p mini_box_dir unless File.directory? mini_box_dir
     File.join(mini_box_dir, self.nedocs_score.to_s + ".png")
   end
@@ -106,7 +106,7 @@ class Nedoc < ActiveRecord::Base
     if File.exists?(self.image_file)
       return true
     else
-      im = Magick::Image::read(File.join(SITE_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg'))[0]
+      im = Magick::Image::read(File.join(RAILS_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg'))[0]
       new_image = Magick::Image.new(im.columns+20,im.rows) { self.background_color = 'transparent' }
       new_image.composite!(im,Magick::WestGravity, Magick::OverCompositeOp)
       gc = Magick::Draw.new
@@ -124,7 +124,7 @@ class Nedoc < ActiveRecord::Base
     #  return true
     # else
       new_image = Magick::Image.new(150,50) { self.background_color = 'lightgray'}
-      gradient = Magick::Image::read(File.join(SITE_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg'))[0]
+      gradient = Magick::Image::read(File.join(RAILS_ROOT, 'public', 'images', 'NEDOCS_gradient.jpg'))[0]
       gradient.resize!(0.20)
       gradient.rotate!(90)
       new_image.composite!(gradient, Magick::NorthWestGravity, Magick::OverCompositeOp)

@@ -15,7 +15,7 @@ class Master::Hospital < ActiveRecord::Base
     
   # should be moved to settings
   def logo_file
-    File.join(SITE_ROOT,'public','images','logos', self.key + ".gif")
+    File.join(RAILS_ROOT,'public','images','logos', self.key + ".gif")
   end
   
 

@@ -374,7 +374,7 @@ class ApplicationController < ActionController::Base
   
   def build_number
     if !defined?(@@build_number)
-      svnversion = `svnversion #{SITE_ROOT}/config`
+      svnversion = `svnversion #{RAILS_ROOT}/config`
       svnversion =~ /:?(\d+)[MS]?\s*$/
       @@build_number = $1
     end
@@ -486,9 +486,9 @@ class ApplicationController < ActionController::Base
       end
     when :photo_gallery
       gallery_dir = File.join('images', 'content', @pg.path, File.basename(name))
-      Dir.chdir(File.join(SITE_ROOT, 'public'))
+      Dir.chdir(File.join(RAILS_ROOT, 'public'))
       all_images = Dir.glob("#{gallery_dir}/*.{jpg,jpeg,png,gif}")
-      Dir.chdir(SITE_ROOT)
+      Dir.chdir(RAILS_ROOT)
       all_images.sort! { |a,b| File.basename(a).to_i <=> File.basename(b).to_i }
       images = all_images.reject { |img| img =~ /-thumb/ }
       thumbs = all_images.reject { |img| img !~ /-thumb/ }
