@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>generate (AngryMidgetPluginsInc::CaptchaImageChallenge)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/captcha_generator.rb, line 120</span>
+                <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">generate</span>(<span class="ruby-identifier">options</span> = {})
+                        <span class="ruby-identifier">options</span> = {
+                                <span class="ruby-identifier">:fontsize</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25</span>,
+                                <span class="ruby-identifier">:padding</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">20</span>,
+                                <span class="ruby-identifier">:color</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'#000'</span>,
+                                <span class="ruby-identifier">:background</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'#fff'</span>,
+                                <span class="ruby-identifier">:fontweight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'bold'</span>,
+                                <span class="ruby-identifier">:rotate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+                        }.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">options</span>)
+
+                        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:fontweight</span>] = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:fontweight</span>]
+                                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'bold'</span> <span class="ruby-keyword kw">then</span> <span class="ruby-value">700</span>
+                                <span class="ruby-keyword kw">else</span> <span class="ruby-value">400</span>
+                        <span class="ruby-keyword kw">end</span>
+                        
+                        <span class="ruby-identifier">text</span> = <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">Draw</span>.<span class="ruby-identifier">new</span>
+                        <span class="ruby-identifier">text</span>.<span class="ruby-identifier">pointsize</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:fontsize</span>]
+                        <span class="ruby-identifier">text</span>.<span class="ruby-identifier">font_weight</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:fontweight</span>]
+                        <span class="ruby-identifier">text</span>.<span class="ruby-identifier">fill</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:color</span>]
+                        <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gravity</span> = <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">CenterGravity</span>
+                        
+                        <span class="ruby-comment cmt">#rotate text 5 degrees left or right</span>
+                        <span class="ruby-identifier">text</span>.<span class="ruby-identifier">rotation</span> = (<span class="ruby-identifier">rand</span>(<span class="ruby-value">2</span>)<span class="ruby-operator">==</span><span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-value">5</span> <span class="ruby-operator">:</span> <span class="ruby-value">-5</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:rotate</span>]
+                        
+                        <span class="ruby-identifier">metric</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">get_type_metrics</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">string</span>)
+
+                        <span class="ruby-comment cmt">#add bg</span>
+                        <span class="ruby-identifier">canvas</span> = <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">ImageList</span>.<span class="ruby-identifier">new</span>
+                        <span class="ruby-identifier">canvas</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">metric</span>.<span class="ruby-identifier">width</span><span class="ruby-operator">+</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:padding</span>], <span class="ruby-identifier">metric</span>.<span class="ruby-identifier">height</span><span class="ruby-operator">+</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:padding</span>]){
+                                <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">background_color</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:background</span>]
+                        }
+
+                        <span class="ruby-comment cmt">#add text</span>
+                        <span class="ruby-identifier">canvas</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">metric</span>.<span class="ruby-identifier">width</span><span class="ruby-operator">+</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:padding</span>], <span class="ruby-identifier">metric</span>.<span class="ruby-identifier">height</span><span class="ruby-operator">+</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:padding</span>]){
+                                <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">background_color</span> = <span class="ruby-value str">'#000F'</span>
+                        }.<span class="ruby-identifier">annotate</span>(<span class="ruby-identifier">text</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">string</span>).<span class="ruby-identifier">wave</span>(<span class="ruby-value">5</span>, <span class="ruby-value">50</span>)
+
+                        <span class="ruby-identifier">canvas</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">metric</span>.<span class="ruby-identifier">width</span><span class="ruby-operator">+</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:padding</span>], <span class="ruby-identifier">metric</span>.<span class="ruby-identifier">height</span><span class="ruby-operator">+</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:padding</span>]){
+                                <span class="ruby-identifier">p</span> = <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">Pixel</span>.<span class="ruby-identifier">from_color</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:background</span>])
+                                <span class="ruby-identifier">p</span>.<span class="ruby-identifier">opacity</span> = <span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">MaxRGB</span><span class="ruby-operator">/</span><span class="ruby-value">3</span>
+                                <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">background_color</span> = <span class="ruby-identifier">p</span>
+                        }.<span class="ruby-identifier">add_noise</span>(<span class="ruby-constant">Magick</span><span class="ruby-operator">::</span><span class="ruby-constant">LaplacianNoise</span>)
+
+                        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">image</span> = <span class="ruby-identifier">canvas</span>.<span class="ruby-identifier">flatten_images</span>.<span class="ruby-identifier">blur_image</span>(<span class="ruby-value">1</span>)
+                <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

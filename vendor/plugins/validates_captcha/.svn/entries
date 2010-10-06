@@ -1,0 +1,61 @@
+8
+
+dir
+1457
+https://dev.biggerbird.com:1443/bbrails/trunk/vendor/plugins/validates_captcha
+https://dev.biggerbird.com:1443/bbrails
+
+
+
+2008-01-20T03:38:21.753388Z
+1318
+aaron
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+380e0afa-9f0f-0410-a653-823cc33d3015
+
+doc
+dir
+
+init.rb
+file
+
+
+
+
+2008-11-26T07:20:08.000000Z
+7fe6c61dda951191dac43e1abf196c9a
+2008-01-20T03:38:21.753388Z
+1318
+aaron
+
+lib
+dir
+
+generators
+dir
+
+README
+file
+
+
+
+
+2008-11-26T07:20:08.000000Z
+342c41e2ab4878d4937a70295cf421ef
+2006-04-11T22:16:20.822961Z
+148
+aaron
+

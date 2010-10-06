@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/bbrails/!svn/ver/1232/trunk/vendor/plugins/juggernaut
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/bbrails/!svn/ver/1228/trunk/vendor/plugins/juggernaut/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/bbrails/!svn/ver/1230/trunk/vendor/plugins/juggernaut/init.rb
+END
+JUGGERNAUT-README
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/bbrails/!svn/ver/1228/trunk/vendor/plugins/juggernaut/JUGGERNAUT-README
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/bbrails/!svn/ver/1228/trunk/vendor/plugins/juggernaut/install.rb
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/bbrails/!svn/ver/1228/trunk/vendor/plugins/juggernaut/MIT-LICENSE
+END
+uninstall.rb
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/bbrails/!svn/ver/1228/trunk/vendor/plugins/juggernaut/uninstall.rb
+END

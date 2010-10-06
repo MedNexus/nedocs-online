@@ -1,0 +1,43 @@
+8
+
+dir
+1457
+https://dev.biggerbird.com:1443/bbrails/trunk/vendor/plugins/encode_email_addresses
+https://dev.biggerbird.com:1443/bbrails
+
+
+
+2008-12-11T01:01:13.862778Z
+1390
+aaron
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+380e0afa-9f0f-0410-a653-823cc33d3015
+
+init.rb
+file
+
+
+
+
+2008-11-26T07:20:08.000000Z
+b2d658be134b1a2208253c75721f5c1c
+2007-01-02T18:51:29.975074Z
+895
+aaron
+
+lib
+dir
+

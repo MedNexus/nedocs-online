@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/bbrails/!svn/ver/1303/trunk/vendor/plugins/engines
+END
+UPGRADING
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/bbrails/!svn/ver/1079/trunk/vendor/plugins/engines/UPGRADING
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/bbrails/!svn/ver/1079/trunk/vendor/plugins/engines/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/bbrails/!svn/ver/1296/trunk/vendor/plugins/engines/init.rb
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/bbrails/!svn/ver/1079/trunk/vendor/plugins/engines/CHANGELOG
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/bbrails/!svn/ver/1079/trunk/vendor/plugins/engines/install.rb
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/bbrails/!svn/ver/1079/trunk/vendor/plugins/engines/MIT-LICENSE
+END
+about.yml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/bbrails/!svn/ver/1079/trunk/vendor/plugins/engines/about.yml
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/bbrails/!svn/ver/1079/trunk/vendor/plugins/engines/README
+END

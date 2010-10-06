@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/bbrails/!svn/ver/148/trunk/vendor/plugins/validates_captcha/generators/captcha
+END
+USAGE
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/bbrails/!svn/ver/148/trunk/vendor/plugins/validates_captcha/generators/captcha/USAGE
+END
+captcha_generator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/bbrails/!svn/ver/148/trunk/vendor/plugins/validates_captcha/generators/captcha/captcha_generator.rb
+END

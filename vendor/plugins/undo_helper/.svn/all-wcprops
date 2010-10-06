@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/bbrails/!svn/ver/875/trunk/vendor/plugins/undo_helper
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/bbrails/!svn/ver/875/trunk/vendor/plugins/undo_helper/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/bbrails/!svn/ver/875/trunk/vendor/plugins/undo_helper/init.rb
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/bbrails/!svn/ver/875/trunk/vendor/plugins/undo_helper/CHANGELOG
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/bbrails/!svn/ver/875/trunk/vendor/plugins/undo_helper/MIT-LICENSE
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/bbrails/!svn/ver/875/trunk/vendor/plugins/undo_helper/README
+END

@@ -1,0 +1,12 @@
+Schema Defining
+===============
+
+Schema Defining is a plugin that adds a method -- defining?() -- to
+ActiveRecord::Schema to indicate when define() is running. This is necessary
+as some migration plugins must change their behaviour accordingly.
+
+License
+=======
+
+This plugin is copyright 2006 by RedHill Consulting, Pty. Ltd. and is released
+under the MIT license.

@@ -1,0 +1,24 @@
+--- 
+
+# Web server must be restarted for changes to take effect!
+
+#Time to live, in seconds
+default_ttl: 1200
+
+#Where to store images, relative to public/images
+default_dir: captcha
+
+#Which file type (and extension) to give generated files
+default_filetype: jpg
+
+#Where to store the PStore file
+store: var/data/captchas.pstore
+
+#Words to use when generating images. Case-insensitive.
+words: 
+  - hugh grant
+  - superman
+  - darth vader
+  - loose fit
+  - whale blubber
+  - et cetera

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/bbrails/!svn/ver/1059/trunk/vendor/plugins/upload_progress/lib
+END
+progress.rb
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/bbrails/!svn/ver/930/trunk/vendor/plugins/upload_progress/lib/progress.rb
+END
+multipart_progress.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/bbrails/!svn/ver/930/trunk/vendor/plugins/upload_progress/lib/multipart_progress.rb
+END
+upload_progress_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/bbrails/!svn/ver/1059/trunk/vendor/plugins/upload_progress/lib/upload_progress_helper.rb
+END
+upload_progress.rb
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/bbrails/!svn/ver/930/trunk/vendor/plugins/upload_progress/lib/upload_progress.rb
+END

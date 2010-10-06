@@ -1,0 +1,79 @@
+8
+
+dir
+1457
+https://dev.biggerbird.com:1443/bbrails/trunk/vendor/plugins/transactional_migrations
+https://dev.biggerbird.com:1443/bbrails
+
+
+
+2006-10-19T09:57:28.079863Z
+827
+aaron
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+380e0afa-9f0f-0410-a653-823cc33d3015
+
+init.rb
+file
+
+
+
+
+2008-11-26T07:20:07.000000Z
+bc17484e19075f02d40a049ae13024e4
+2006-10-19T09:57:28.079863Z
+827
+aaron
+
+lib
+dir
+
+CHANGELOG
+file
+
+
+
+
+2008-11-26T07:20:07.000000Z
+f1210fed24346d33e13c9ee6efd35712
+2006-10-19T09:57:28.079863Z
+827
+aaron
+
+MIT-LICENSE
+file
+
+
+
+
+2008-11-26T07:20:07.000000Z
+7cb92c19a6bdd5fbb8a756a3af21b6fd
+2006-10-19T09:57:28.079863Z
+827
+aaron
+
+README
+file
+
+
+
+
+2008-11-26T07:20:07.000000Z
+108bb8aa2df82a4fc6d7ac6bd7be0c1a
+2006-10-19T09:57:28.079863Z
+827
+aaron
+

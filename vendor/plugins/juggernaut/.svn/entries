@@ -1,0 +1,112 @@
+8
+
+dir
+1457
+https://dev.biggerbird.com:1443/bbrails/trunk/vendor/plugins/juggernaut
+https://dev.biggerbird.com:1443/bbrails
+
+
+
+2007-08-01T19:41:13.778616Z
+1232
+aaron
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+380e0afa-9f0f-0410-a653-823cc33d3015
+
+media
+dir
+
+test
+dir
+
+Rakefile
+file
+
+
+
+
+2008-11-26T07:20:16.000000Z
+ac92852653020166ffb216bb91296da3
+2007-07-30T21:22:34.554522Z
+1228
+aaron
+
+tasks
+dir
+
+init.rb
+file
+
+
+
+
+2008-11-26T07:20:16.000000Z
+533293ea62fc78606b6f63fd9fb33b86
+2007-07-31T19:26:57.571518Z
+1230
+aaron
+
+lib
+dir
+
+JUGGERNAUT-README
+file
+
+
+
+
+2008-11-26T07:20:16.000000Z
+ea97d3da6438dc31bf00f9e872d7c5dd
+2007-07-30T21:22:34.554522Z
+1228
+aaron
+
+install.rb
+file
+
+
+
+
+2008-11-26T07:20:16.000000Z
+683d7d96ef8f9a161f6e974f0447ed43
+2007-07-30T21:22:34.554522Z
+1228
+aaron
+
+MIT-LICENSE
+file
+
+
+
+
+2008-11-26T07:20:16.000000Z
+1024e566d4c65ff1d78e858485b38914
+2007-07-30T21:22:34.554522Z
+1228
+aaron
+
+uninstall.rb
+file
+
+
+
+
+2008-11-26T07:20:16.000000Z
+0c8877c8b539a5967556cdaafee16111
+2007-07-30T21:22:34.554522Z
+1228
+aaron
+

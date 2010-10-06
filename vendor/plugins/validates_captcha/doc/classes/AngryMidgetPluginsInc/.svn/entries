@@ -1,0 +1,76 @@
+8
+
+dir
+1457
+https://dev.biggerbird.com:1443/bbrails/trunk/vendor/plugins/validates_captcha/doc/classes/AngryMidgetPluginsInc
+https://dev.biggerbird.com:1443/bbrails
+
+
+
+2006-04-11T22:16:20.822961Z
+148
+aaron
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+380e0afa-9f0f-0410-a653-823cc33d3015
+
+CaptchaConfig.src
+dir
+
+CaptchaImageChallenge.src
+dir
+
+Helpers
+dir
+
+CaptchaChallenge.html
+file
+
+
+
+
+2008-11-26T07:20:08.000000Z
+74a1e7c6759ff928cbb7c27fed27470a
+2006-04-11T22:16:20.822961Z
+148
+aaron
+
+CaptchaConfig.html
+file
+
+
+
+
+2008-11-26T07:20:08.000000Z
+bc7a6e9050132444e598a6b0a3ac4e15
+2006-04-11T22:16:20.822961Z
+148
+aaron
+
+CaptchaImageChallenge.html
+file
+
+
+
+
+2008-11-26T07:20:08.000000Z
+fa7ffee017a662f3d76cb42355c3521d
+2006-04-11T22:16:20.822961Z
+148
+aaron
+
+Validations
+dir
+

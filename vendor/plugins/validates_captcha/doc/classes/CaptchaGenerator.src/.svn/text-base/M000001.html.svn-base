@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>manifest (CaptchaGenerator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File generators/captcha/captcha_generator.rb, line 6</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">manifest</span>
+                <span class="ruby-identifier">record</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
+                        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">file_name</span>
+                                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'config'</span>
+                                        <span class="ruby-identifier">m</span>.<span class="ruby-identifier">file</span> <span class="ruby-value str">'captcha.yml'</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'config'</span>, <span class="ruby-value str">'captcha.yml'</span>)
+
+                                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'image_directory'</span>
+                                        <span class="ruby-identifier">m</span>.<span class="ruby-identifier">directory</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'public'</span>, <span class="ruby-value str">'images'</span>, <span class="ruby-identifier">config</span>[<span class="ruby-value str">'default_dir'</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">'captcha'</span>)
+
+                                <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'store_directory'</span>
+                                        <span class="ruby-identifier">m</span>.<span class="ruby-identifier">directory</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'var'</span>, <span class="ruby-value str">'data'</span>)
+
+                                <span class="ruby-keyword kw">else</span>
+                                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Could not recognise action \&quot;#{file_name}\&quot;.&quot;</span>
+
+                        <span class="ruby-keyword kw">end</span>
+                }
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

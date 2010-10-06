@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/bbrails/!svn/ver/1302/trunk/vendor/plugins/mini_magick
+END
+History.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/bbrails/!svn/ver/1300/trunk/vendor/plugins/mini_magick/History.txt
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/Rakefile
+END
+Manifest.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/Manifest.txt
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/init.rb
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/bbrails/!svn/ver/1300/trunk/vendor/plugins/mini_magick/MIT-LICENSE
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/README.txt
+END

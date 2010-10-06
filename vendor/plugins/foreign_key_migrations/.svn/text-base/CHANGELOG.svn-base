@@ -1,0 +1,33 @@
+[REVISION 2006803]
+
+[FIXED] The method proper_pluralized_table_name tries to call pluralize_table_name where it should call pluralized_table_name.
+
+[REVISION 20060623]
+
+[FIXED] Another try at a hack-around for a "feature" of pluralize that when called to pluralize a word that is already in the plural, acts as singularize.
+
+[REVISION 20060616]
+
+[FIXED] Hack-around for a "feature" of pluralize that when called to pluralize a word that is already in the plural, acts as singularize. Ie. "countries".pluralize becomes "country"!
+
+[REVISION 200606004]
+
+[CHANGED] This plugin now depends on Schema Defining!
+
+[REVISION 20060602]
+
+[CHANGED] Simplified static method overriding thanks to Ryan Tomayko.
+
+[REVISION 20060525]
+
+[CHANGED] Disabled foreign-key generation when executing a schema dump. This is a temporary measure until I get around to batching up the foreign keys at the end of the script.
+
+[REVISION 20060523]
+
+[NEW] Support :references => nil to prevent unwanted foreign-keys.
+
+[FIXED] Pluralization.
+
+[REVISION 20060522]
+
+[FIXED] Infinite recursion caused by bug in 1.8.4 method_alias on windows.

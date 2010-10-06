@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/test
+END
+trogdor.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/test/trogdor.jpg
+END
+actually_a_gif.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/test/actually_a_gif.jpg
+END
+not_an_image.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/test/not_an_image.php
+END
+test_image_temp_file.rb
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/test/test_image_temp_file.rb
+END
+test_mini_magick_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/test/test_mini_magick_test.rb
+END
+simple.gif
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/bbrails/!svn/ver/1285/trunk/vendor/plugins/mini_magick/test/simple.gif
+END

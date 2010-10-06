@@ -1,0 +1,58 @@
+8
+
+dir
+1457
+https://dev.biggerbird.com:1443/bbrails/trunk/vendor/plugins/imagemagick_tag
+https://dev.biggerbird.com:1443/bbrails
+
+
+
+2006-11-30T20:03:12.744908Z
+875
+aaron
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+380e0afa-9f0f-0410-a653-823cc33d3015
+
+test
+dir
+
+init.rb
+file
+
+
+
+
+2008-11-26T07:20:06.000000Z
+460b9d573573e1ed29de9e40cf3050dc
+2006-11-30T20:03:12.744908Z
+875
+aaron
+
+lib
+dir
+
+README
+file
+
+
+
+
+2008-11-26T07:20:06.000000Z
+356e7384adb697411db5ff96bb01d5a6
+2006-11-30T20:03:12.744908Z
+875
+aaron
+

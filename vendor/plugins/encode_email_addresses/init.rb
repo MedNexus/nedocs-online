@@ -1,0 +1,1 @@
+require 'encode_email_addresses'
