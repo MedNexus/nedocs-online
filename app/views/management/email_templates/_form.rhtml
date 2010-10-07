@@ -10,9 +10,9 @@ end -%>
 
 <%= flash_message %>
 
-<%= form_remote_tag :url => @url,
+<% form_remote_tag :url => @url,
                     :html => { :id => 'mainForm' }, 
-                    :loading => "Form.disable('mainForm')" -%>
+                    :loading => "Form.disable('mainForm')" do -%>
                     
 <table>
     <tr>
@@ -46,6 +46,6 @@ end -%>
             
             
             
-<% end_form_tag -%>
+<% end -%>
 
 <%= javascript_tag "Form.enable('mainForm');" %>

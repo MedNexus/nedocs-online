@@ -12,9 +12,9 @@ end -%>
 
 <%= flash_message %>
 
-<%= form_remote_tag :url => @url,
+<% form_remote_tag :url => @url,
                     :html => { :id => 'mainForm' }, 
-                    :loading => "Form.disable('mainForm')" -%>
+                    :loading => "Form.disable('mainForm')" do -%>
                     
 <table>
     <tr>
@@ -41,8 +41,8 @@ end -%>
 	<tr>
 		<td colspan="2">
 			<% %>
-			<%= textile_editor 'item', 'plan', :style => "width: #{width}" -%>
-			<% # text_area :item, :plan, :rows => "5", :style => 'width: 255px' %>
+			<% # textile_editor 'item', 'plan', :style => "width: #{width}" -%>
+			<%= text_area :item, :plan, :rows => "5", :style => 'width: 255px' %>
 		</td>
 	</tr>	
 	<tr>
@@ -54,7 +54,7 @@ end -%>
 </table>
             
             
-<%= textile_editor_initialize -%>
-<% end_form_tag -%>
+<% # textile_editor_initialize -%>
+<% end -%>
 
 <%= javascript_tag "Form.enable('mainForm');" %>
