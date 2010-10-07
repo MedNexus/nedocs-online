@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_filter :create_settings_object, :set_default_session_values, :check_ssl_requirement, :expire_session_data, :authenticate_user
+  before_filter :create_settings_object, :set_default_session_values, :check_ssl_requirement, :authenticate_user #, :expire_session_data, 
   filter_parameter_logging :password, :cc_number, :cc_cvv2, :card_number, :card_cvv
-  after_filter :compress_output
+  # after_filter :compress_output
   
   # Call require_ssl to indicate that you want to require SSL for your controller/action.
   #
