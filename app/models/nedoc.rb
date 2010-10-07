@@ -194,7 +194,7 @@ class Nedoc < ActiveRecord::Base
     # pull up the last years worth of data, or the last 500 points
     local_time_zone = Setting.time_zone
     
-    Nedoc.find(:all, :conditions => ["created_at > ?", 12.month.ago], :order => ["created_at DESC"], :limit => 500).collect { |x| "[#{TimeZone.new(local_time_zone).utc_to_local(x.created_at).to_i*1000},#{x.nedocs_score}]" }
+    Nedoc.find(:all, :conditions => ["created_at > ?", 12.month.ago], :order => ["created_at DESC"], :limit => 500).collect { |x| "[#{ActiveSupport::TimeZone.new(local_time_zone).utc_to_local(x.created_at).to_i*1000},#{x.nedocs_score}]" }
   end
   
   def self.graph_by_time_of_day
